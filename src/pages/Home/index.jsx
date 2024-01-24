@@ -1,12 +1,12 @@
 import { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { createSlice, configureStore } from '@reduxjs/toolkit';
-import theHomeReducer from '../../store/reducers/HomeReducer';
-import styles from './Home.css';
+import homeSlice from '../../store/slices/home/homeSlice';
+import './styles.css';
 
 const store = configureStore({
     reducer: {
-        home: theHomeReducer,
+        home: homeSlice,
     },
 });
 
