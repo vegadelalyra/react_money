@@ -1,10 +1,13 @@
+# CI and Hosting
+.firebase
+.github
+
 # Logs
 logs
 *.log
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
-<<<<<<< HEAD
 pnpm-debug.log*
 lerna-debug.log*
 
@@ -23,7 +26,6 @@ dist-ssr
 *.njsproj
 *.sln
 *.sw?
-=======
 lerna-debug.log*
 .pnpm-debug.log*
 
@@ -148,4 +150,3 @@ dist
 .yarn/build-state.yml
 .yarn/install-state.gz
 .pnp.*
->>>>>>> e855520f9d1c1c7b27744391d0b2df278970ed73
