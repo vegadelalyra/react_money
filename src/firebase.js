@@ -1,9 +1,17 @@
 // Import the functions you need from the SDKs you need
 import { initializeApp } from 'firebase/app';
-import { getAuth, GoogleAuthProvider } from 'firebase/auth';
+import {
+    browserSessionPersistence,
+    getAuth,
+    GoogleAuthProvider,
+    onAuthStateChanged,
+    setPersistence,
+} from 'firebase/auth';
 import { getFirestore } from 'firebase/firestore';
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
+import store from '/src/store/index';
+import { setIsAuthenticated, setUser } from './store/slices/user/userSlice';
 
 // Your web app's Firebase configuration
 const firebaseConfig = {
@@ -18,7 +26,21 @@ const firebaseConfig = {
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
 
-export const auth = getAuth(app);
+const auth = getAuth(app);
 auth.useDeviceLanguage();
-export const firestore = getFirestore(app);
-export const googleAuthProvider = new GoogleAuthProvider();
+
+onAuthStateChanged(auth, user => {
+    if (user) {
+        store.dispatch(setUser(user));
+        store.dispatch(setIsAuthenticated(true));
+    } else {
+        store.dispatch(setUser(null));
+        store.dispatch(setIsAuthenticated(false));
+    }
+});
+
+// setPersistence(auth, browserSessionPersistence)
+const firestore = getFirestore(app);
+const googleAuthProvider = new GoogleAuthProvider();
+
+export { auth, firestore, googleAuthProvider };

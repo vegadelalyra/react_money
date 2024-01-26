@@ -1,19 +1,20 @@
 // LoginPage.js
 import React from 'react';
-import { auth, googleAuthProvider } from '../../firebase';
-import { signInWithPopup } from 'firebase/auth';
 import './styles.sass';
+import { useDispatch } from 'react-redux';
+
+import { loginGoogle } from '../../store/slices/user/userThunks';
 
 import hero_mobile_svg from '../../assets/login/hero_mobile.svg';
 import makaiapp_logo_svg from '../../assets/login/makaiapp_logo.svg';
 import google_icon_svg from '../../assets/login/google_icon.svg';
 
 const LoginPage = () => {
+    const dispatch = useDispatch();
+
     const handleGoogleLogin = async () => {
         try {
-            const oAuth2 = await signInWithPopup(auth, googleAuthProvider);
-            // Dispatch an action if needed
-            console.log(oAuth2);
+            dispatch(loginGoogle());
         } catch (error) {
             console.error('Error logging in with Google:', error.message);
         }

@@ -17,7 +17,6 @@ const homeSlice = createSlice({
         setTransactions: (state, action) => {
             state.transactions = action.payload;
         },
-        // Add other actions as needed
     },
 });
 

@@ -9,11 +9,12 @@ export const loginGoogle = () => {
     return async dispatch => {
         try {
             const userCredentials = await signInWithPopup(auth, provider);
-            const userLogged = await loginFromFireStore(userCredentials.user)
+            const userLogged = await loginFromFireStore(userCredentials.user);
             console.log(userLogged);
             dispatch(setIsAuthenticated(true));
             dispatch(setUser(userLogged));
         } catch (error) {
+            console.warn(error)
             dispatch(setIsAuthenticated(false));
             dispatch(
                 setError({
