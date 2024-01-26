@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import MyImage from '../../../components/myImage';
+import CloudinaryImg from '../../../components/CloudinaryImg';
 import eye_svg from '../assets/eye.svg';
 
 const Balance = ({ balance, setBalance }) => {
@@ -16,10 +16,10 @@ const Balance = ({ balance, setBalance }) => {
                 <span className='amount'>
                     {visible ? `$${balance.toFixed(2)}` : '********'}
                 </span>
-                <MyImage
+                <CloudinaryImg
+                    publicId={'makaia-transfers-react/home/eye'}
                     containerClss={'eyeContainer'}
                     imgClss={'eye'}
-                    src={eye_svg}
                     alt='Hide balance?'
                 />
             </div>

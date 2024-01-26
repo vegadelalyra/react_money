@@ -1,13 +1,10 @@
 // LoginPage.js
-import React from 'react';
 import './styles.sass';
+import React from 'react';
 import { useDispatch } from 'react-redux';
-
 import { loginGoogle } from '../../store/slices/user/userThunks';
 
-import hero_mobile_svg from './assets/hero_mobile.svg';
-import makaiapp_logo_svg from './assets/makaiapp_logo.svg';
-import google_icon_svg from './assets/google_icon.svg';
+import CloudinaryImg from '../../components/CloudinaryImg';
 
 const LoginPage = () => {
     const dispatch = useDispatch();
@@ -26,23 +23,24 @@ const LoginPage = () => {
 
     return (
         <div className='login'>
-            <picture onContextMenu={handleContextMenu}>
-                <img
-                    className='logo'
-                    src={makaiapp_logo_svg}
-                    alt='Here shall be our logo'
-                    draggable='false'
+            <section onContextMenu={handleContextMenu}>
+                <CloudinaryImg
+                    publicId={'makaia-transfers-react/login/makaiapp_logo'}
+                    imgClss={'logo'}
+                    alt={'Here shall be our logo'}
                 />
-                <img
-                    src={hero_mobile_svg}
-                    alt='Welcome to Makaiapp!'
-                    draggable='false'
+
+                <CloudinaryImg
+                    publicId={'makaia-transfers-react/login/hero_mobile'}
+                    alt={'Welcome to Makaiapp!'}
                 />
-            </picture>
-            <button className='loginButton' onClick={handleGoogleLogin}>
-                <img
-                    src={google_icon_svg}
-                    id='googleG'
+            </section>
+            <button
+                className='loginButton'
+                onClick={handleGoogleLogin}>
+                <CloudinaryImg
+                    publicId={'makaia-transfers-react/login/google_icon'}
+                    imgClss={'googleG'}
                 />{' '}
                 Log in with Google
             </button>
