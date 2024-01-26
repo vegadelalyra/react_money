@@ -25,7 +25,7 @@ const LoginPage = () => {
     };
 
     return (
-        <div>
+        <div className='testing'>
             <picture onContextMenu={handleContextMenu}>
                 <img
                     src={makaiapp_logo_svg}

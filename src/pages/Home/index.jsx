@@ -1,4 +1,4 @@
-import './styles.sass'
+// import './styles.sass'
 import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import Balance from './components/Balance';
@@ -8,6 +8,7 @@ import Banner from './components/Banner';
 import Navbar from './components/Navbar';
 import History from './components/History';
 import { setBalance } from '../../store/slices/home/homeSlice';
+import './HomePage.sass';
 
 const Home = () => {
     const balance = useSelector(state => state.home.balance);
