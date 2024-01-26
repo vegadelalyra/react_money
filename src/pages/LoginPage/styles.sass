@@ -1,59 +1,47 @@
 // LoginPage.sass
-body
-  margin: 0
-  display: flex
-  justify-content: center
-  align-items: center
-  height: 100vh
-  opacity: 0
-  animation: fadeIn 1s ease-in-out forwards
-  font-family: 'Arimo', sans-serif
+.login
+  picture
+    display: flex
+    flex-flow: column
+    align-items: center
+    margin-bottom: 20px
+    gap: 40px
+    justify-start: flex-start
 
-@keyframes fadeIn
-  0%
-    opacity: 0
-  100%
-    opacity: 1
-
-div
-  text-align: center
-
-picture
-  display: flex
-  flex-flow: column
-  align-items: center
-  margin-bottom: 20px
-  gap: 40px
-  justify-start: flex-start
-
-img
-  justify-content: flex-start
-  width: 300px
-  height: min-content
-
-.loginButton
-  opacity: 0
-  background-color: #4285f4
-  color: white
-  padding: 15px
-  font-size: 1.2rem
-  border: none
-  border-radius: 5px
-  cursor: pointer
-  justify-content: center
-  width: 90% // Adjust this based on your preference
-  max-width: 300px // Set a maximum width if needed
-  animation: fadeInBut 1s ease-in-out forwards 0.5s, shake 0.5s ease-in-out 4s forwards
-  &:hover
-    background-color: #ef3737
-  &:active
-    background-color: black
+    .logo
+      animation: floatAnimation 2s infinite ease-in-out
 
   img
-    top: 2px
-    position: relative
-    user-drag: none
-    // margin-right: 15px // Space between the G logo and text
+    justify-content: flex-start
+    width: 300px
+    height: min-content
+
+  .loginButton
+    opacity: 0
+    background-color: #4285f4
+    color: white
+    padding: 15px
+    font-size: 1.2rem
+    border: none
+    border-radius: 5px
+    cursor: pointer
+    justify-content: center
+    width: 90% // Adjust this based on your preference
+    max-width: 300px // Set a maximum width if needed
+    animation: fadeInBut 1s ease-in-out forwards 0.5s, shake 0.5s ease-in-out 4s forwards
+    &:hover
+      background-color: #ef3737
+    &:active
+      background-color: black
+
+    img
+      top: 2px
+      position: relative
+      user-drag: none
+      // margin-right: 15px // Space between the G logo and text
+
+  #googleG
+    width: 20px
 
 @keyframes fadeInBut
   0%
@@ -80,5 +68,10 @@ img
   100%
     transform: translateX(5px)
 
-#googleG
-  width: 20px
+@keyframes floatAnimation
+  0%
+    transform: translateY(0)
+  50%
+    transform: translateY(-10px)
+  100%
+    transform: translateY(0)

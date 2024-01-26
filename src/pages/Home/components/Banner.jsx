@@ -12,7 +12,7 @@ const Banner = ({ images }) => {
     const inactiveDot = { backgroundColor: 'gray' };
 
     return (
-        <div className='image-slider'>
+        <section className='image-slider'>
             <img
                 src={images[currentIndex]}
                 alt=''
@@ -29,7 +29,7 @@ const Banner = ({ images }) => {
                 <button onClick={handlePrevImage}>⬅️</button>
                 <button onClick={handleNextImage}>➡️</button>
             </div>
-        </div>
+        </section>
     );
 };
 

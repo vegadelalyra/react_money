@@ -25,9 +25,10 @@ const LoginPage = () => {
     };
 
     return (
-        <div className='testing'>
+        <div className='login'>
             <picture onContextMenu={handleContextMenu}>
                 <img
+                    className='logo'
                     src={makaiapp_logo_svg}
                     alt='Here shall be our logo'
                     draggable='false'
