@@ -1,42 +1,41 @@
-import React from "react";
-import { useSelector, useDispatch } from "react-redux";
-import Balance from "./components/Balance";
-import Bell from "./components/Bell";
-import Profile from "./components/Profile";
-import ImageSlider from "./components/ImageSlider";
-import Navbar from "./components/Navbar";
-import History from "./components/History";
-import { setBalance } from "../../store/slices/home/homeSlice";
+import './styles.sass'
+import React from 'react';
+import { useSelector, useDispatch } from 'react-redux';
+import Balance from './components/Balance';
+import Bell from './components/Bell';
+import Profile from './components/Profile';
+import Banner from './components/Banner';
+import Navbar from './components/Navbar';
+import History from './components/History';
+import { setBalance } from '../../store/slices/home/homeSlice';
 
 const Home = () => {
-  const balance = useSelector((state) => state.home.balance);
-  const transactions = useSelector((state) => state.home.transactions);
-  const dispatch = useDispatch();
+    const balance = useSelector(state => state.home.balance);
+    const transactions = useSelector(state => state.home.transactions);
+    const dispatch = useDispatch();
 
-  const updateBalance = newBalance => {
-    dispatch(setBalance(newBalance))
-  }
+    const updateBalance = newBalance => {
+        dispatch(setBalance(newBalance));
+    };
 
-  const swapImages = [
-    './assets/swap01.svg'
-  ]
+    const swapImages = ['./assets/swap01.svg'];
 
-  return (
-    <div className="home">
-      <Balance
-        balance={balance}
-        setBalance={updateBalance}
-      />
-      <Bell />
-      <Profile />
-      <ImageSlider images={swapImages} />
-      <Navbar />
-      <History transactions={transactions} />
-      <div className="footer">
-        <Navbar />
-      </div>
-    </div>
-  );
+    return (
+        <div className='home'>
+            <Balance
+                balance={balance}
+                setBalance={updateBalance}
+            />
+            <Bell />
+            <Profile />
+            <Banner images={swapImages} />
+            <Navbar />
+            <History transactions={transactions} />
+            <div className='footer'>
+                <Navbar />
+            </div>
+        </div>
+    );
 };
 
 export default Home;

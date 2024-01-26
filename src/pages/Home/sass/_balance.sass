@@ -1,0 +1,31 @@
+.balance
+  display: flex
+  flex-flow: column
+  align-items: flex-start
+  color: rgba(144, 149, 160, 1)
+  font-weight: 400
+  line-height: 26px
+  position: absolute
+  top: 60px
+  cursor: context-menu
+
+  &__symbols
+    display: flex
+    align-items: center
+    cursor: pointer
+
+  .amount
+    font-size: 2rem
+    line-height: 48px
+    font-weight: 700
+    color: black
+    text-align: right
+    -webkit-number-format: "n2"
+
+  .eye
+    width: 30px
+
+    &Container
+      top: 10px
+      margin-left: 1rem
+      position: relative

@@ -1,11 +1,9 @@
 // Import the functions you need from the SDKs you need
 import { initializeApp } from 'firebase/app';
 import {
-    browserSessionPersistence,
     getAuth,
     GoogleAuthProvider,
     onAuthStateChanged,
-    setPersistence,
 } from 'firebase/auth';
 import { getFirestore } from 'firebase/firestore';
 // TODO: Add SDKs for Firebase products that you want to use
@@ -31,7 +29,13 @@ auth.useDeviceLanguage();
 
 onAuthStateChanged(auth, user => {
     if (user) {
-        store.dispatch(setUser(user));
+        const serializedUser = {
+            uid: user.uid,
+            displayName: user.displayName,
+            email: user.email,
+            photoURL: user.photoURL
+        }
+        store.dispatch(setUser(serializedUser));
         store.dispatch(setIsAuthenticated(true));
     } else {
         store.dispatch(setUser(null));
@@ -39,7 +43,6 @@ onAuthStateChanged(auth, user => {
     }
 });
 
-// setPersistence(auth, browserSessionPersistence)
 const firestore = getFirestore(app);
 const googleAuthProvider = new GoogleAuthProvider();
 

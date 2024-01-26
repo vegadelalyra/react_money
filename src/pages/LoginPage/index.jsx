@@ -5,9 +5,9 @@ import { useDispatch } from 'react-redux';
 
 import { loginGoogle } from '../../store/slices/user/userThunks';
 
-import hero_mobile_svg from '../../assets/login/hero_mobile.svg';
-import makaiapp_logo_svg from '../../assets/login/makaiapp_logo.svg';
-import google_icon_svg from '../../assets/login/google_icon.svg';
+import hero_mobile_svg from './assets/hero_mobile.svg';
+import makaiapp_logo_svg from './assets/makaiapp_logo.svg';
+import google_icon_svg from './assets/google_icon.svg';
 
 const LoginPage = () => {
     const dispatch = useDispatch();
@@ -38,7 +38,7 @@ const LoginPage = () => {
                     draggable='false'
                 />
             </picture>
-            <button onClick={handleGoogleLogin}>
+            <button className='loginButton' onClick={handleGoogleLogin}>
                 <img
                     src={google_icon_svg}
                     id='googleG'
