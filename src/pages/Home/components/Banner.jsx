@@ -9,9 +9,6 @@ const Banner = () => {
     'makaia-transfers-react/home/swap01',
   ];
 
-  const activeDot = { backgroundColor: 'blue' };
-  const inactiveDot = { backgroundColor: 'gray' };
-
   return (
     <aside className='banner__container'>
       <section className='banner'>

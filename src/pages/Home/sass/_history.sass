@@ -1,47 +1,73 @@
-.history
-  list-style: none
-  padding: 1rem
+.history__container
+  position: absolute
+  top: 460px
+  .history
+    position: relative
+    list-style: none
 
-  .item
-    display: flex
-    align-items: center
-    border-bottom: 1px solid #d3d3d3
-    padding: 0.5rem
-    margin-bottom: 0.5rem
+    div
+      display: flex
+      align-items: center
+      justify-content: space-between
+      width: 330px
+      h2
+        font-family: Arimo
+        font-weight: 700
+        font-size: 20px
+        line-height: 30px
+        color: rgba(23, 26, 31, 1)
+      span
+        width: 92px
+        height: 36px
+        font-family: 'DM Sans'
+        font-weight: 400
+        font-size: 14px
+        line-height: 40px
+        color: rgba(144, 149, 160, 1)
+        cursor: pointer
+        &:hover
+          text-decoration: underline
 
-  .icon
-    font-size: 1.5rem
-    margin-right: 1rem
+    .item
+      display: flex
+      align-items: center
+      border-bottom: 1px solid #d3d3d3
+      padding: 0.5rem
+      margin-bottom: 0.5rem
 
-  .name
-    font-size: 1rem
-    font-weight: bold
+    .icon
+      font-size: 1.5rem
+      margin-right: 1rem
 
-  .section
-    font-size: 0.8rem
-    color: gray
-    margin-left: 0.5rem
+    .name
+      font-size: 1rem
+      font-weight: bold
 
-  .date
-    font-size: 0.8rem
-    color: gray
-    margin-left: auto
+    .section
+      font-size: 0.8rem
+      color: gray
+      margin-left: 0.5rem
 
-  .amount
-    font-size: 1rem
-    font-weight: bold
-    color: green
+    .date
+      font-size: 0.8rem
+      color: gray
+      margin-left: auto
 
-  .amount
+    .amount
+      font-size: 1rem
+      font-weight: bold
+      color: green
+
+    .amount
       &.negative
         color: red
 
-  .amount::before
-    content: attr(data-amount-symbol)
-    margin-right: 0.5rem
+    .amount::before
+      content: attr(data-amount-symbol)
+      margin-right: 0.5rem
 
-  .see-all
-    font-size: 0.8rem
-    color: gray
-    float: right
-    margin-top: 1rem
+    .see-all
+      font-size: 0.8rem
+      color: gray
+      float: right
+      margin-top: 1rem
