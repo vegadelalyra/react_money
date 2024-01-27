@@ -28,9 +28,7 @@ const Home = () => {
             <Banner />
             <ActionMenu />
             <History transactions={transactions} />
-            <footer>
                 <Navbar />
-            </footer>
         </div>
     );
 };

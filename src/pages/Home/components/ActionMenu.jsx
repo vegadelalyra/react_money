@@ -17,7 +17,7 @@ const ActionMenu = () => {
   };
 
   return (
-    <div className='actionMenu__container'>
+    <nav className='actionMenu__container'>
       <section className='actionMenu'>
         <IncrustedCircle
           publicId={'makaia-transfers-react/home/addMoney'}
@@ -37,7 +37,7 @@ const ActionMenu = () => {
           alt={'stat'}
           text={'Statistic'}></IncrustedCircle>
       </section>
-    </div>
+    </nav>
   );
 };
 

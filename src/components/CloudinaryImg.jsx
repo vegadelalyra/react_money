@@ -2,7 +2,7 @@ import React from 'react';
 import { Image, Transformation } from 'cloudinary-react';
 import cloudinaryConfig from '../../cloudinary.config';
 
-const CloudinaryImg = ({ publicId, width, imgClss, containerClss, alt }) => {
+const CloudinaryImg = ({ publicId, width, imgClss, containerClss, alt, figcaption = '', imgId }) => {
     const handleContextMenu = event => {
         event.preventDefault();
     };
@@ -15,7 +15,7 @@ const CloudinaryImg = ({ publicId, width, imgClss, containerClss, alt }) => {
                 cloudName={cloudinaryConfig.cloudName}
                 publicId={publicId}
                 className={imgClss}
-                alt={alt}
+                alt={alt} id={imgId}
                 draggable='false'>
                 <Transformation 
                     width={width}
@@ -24,6 +24,7 @@ const CloudinaryImg = ({ publicId, width, imgClss, containerClss, alt }) => {
                     responsive
                 />
             </Image>
+            {figcaption && <figcaption>{figcaption}</figcaption>}
         </picture>
     );
 };
