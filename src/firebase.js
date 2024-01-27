@@ -14,7 +14,6 @@ import { getFirestore } from 'firebase/firestore';
 import store from '/src/store/index';
 import {
     SET_IS_AUTHENTICATED,
-    SET_PHOTO_URL,
     SET_USER,
 } from './store/slices/user/userSlice';
 
@@ -56,11 +55,9 @@ onAuthStateChanged(auth, user => {
             accessToken: user.accessToken,
         };
         store.dispatch(SET_USER(serializedUser));
-        store.dispatch(SET_PHOTO_URL(serializedUser.photoURL));
         store.dispatch(SET_IS_AUTHENTICATED(true));
     } else {
         store.dispatch(SET_USER(null));
-        store.dispatch(SET_PHOTO_URL(null));
         store.dispatch(SET_IS_AUTHENTICATED(false));
     }
 });
