@@ -1,5 +1,5 @@
 import { signInWithPopup, signOut } from 'firebase/auth';
-import { auth, googleAuthProvider } from '../../../firebase';
+import { auth, googleAuthProvider } from '../../../services/firebaseService';
 import { SET_ERROR, SET_IS_AUTHENTICATED, SET_USER } from './userSlice';
 import { loginFromFireStore } from '../../../services/userService';
 
@@ -16,8 +16,8 @@ export const loginGoogle = () => {
           'if cause: "userThunksFirebaseError: Missing or insufficient permissions.", go to your firebase console and fix your firestore query rules: if request.auth != null'
         );
       SET_ERROR(null);
-      
-      return userLogged
+
+      return userLogged;
     } catch (error) {
       console.warn(error);
       dispatch(
