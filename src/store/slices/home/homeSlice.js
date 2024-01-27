@@ -12,7 +12,7 @@ const homeSlice = createSlice({
       state.contacts = action.payload;
     },
     SET_BALANCE: (state, action) => {
-      state.balance = action.payload;
+      state.balance = Math.max(0, state.balance + action.payload);
     },
     SET_TRANSACTIONS: (state, action) => {
       state.transactions = action.payload;
@@ -20,6 +20,7 @@ const homeSlice = createSlice({
   },
 });
 
-export const { SET_CONTACTS, SET_BALANCE, SET_TRANSACTIONS } = homeSlice.actions;
+export const { SET_CONTACTS, SET_BALANCE, SET_TRANSACTIONS } =
+  homeSlice.actions;
 
 export default homeSlice.reducer;

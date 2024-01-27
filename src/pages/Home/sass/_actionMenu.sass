@@ -5,44 +5,47 @@
   width: 390px
   padding: 30px
 
-.actionMenu
-  display: flex
-  justify-content: space-around
-  align-items: center
-  position: relative
-  right: 10px
-
-.actionMenuItem
-  display: flex
-  flex-direction: column
-  align-items: center
-  text-align: center
-  font-family: 'DM Sans', sans-serif
-  font-weight: 400
-  font-size: 14px
-  line-height: 22px
-  color: rgba(23, 26, 31, 1)
-  cursor: pointer
-
-  &::before
-    content: ''
-    display: block
-    width: 52px
-    height: 52px
-    border-radius: 50%
-    border: 1px solid rgba(23, 26, 31, 1)
-    margin-bottom: 8px
-
-  .cloudinaryImgWrapper
+  .actionMenu
+    display: flex
+    justify-content: space-around
+    align-items: center
     position: relative
-    top: -50px
-    height: 0px
+    right: 10px
 
-  .qr, .transfer
-    position: relative
+  .actionMenuItem
+    display: flex
+    flex-direction: column
+    align-items: center
+    text-align: center
+    font-family: 'DM Sans', sans-serif
+    font-weight: 400
+    font-size: 14px
+    line-height: 22px
+    color: rgba(23, 26, 31, 1)
+    cursor: pointer
 
-  .qr
-    top: 4px
+    &::before
+      content: ''
+      display: block
+      width: 52px
+      height: 52px
+      border-radius: 50%
+      border: 1px solid rgba(23, 26, 31, 1)
+      margin-bottom: 8px
 
-  .transfer
-    top: 3px
+    .cloudinaryImgWrapper
+      position: relative
+      top: -50px
+      height: 0px
+
+    .qr, .transfer
+      position: relative
+
+    .qr
+      top: 4px
+
+    .transfer
+      top: 3px
+
+  .disabled
+    cursor: default
