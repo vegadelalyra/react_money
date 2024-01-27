@@ -15,7 +15,9 @@ export const loginGoogle = () => {
         throw Error(
           'if cause: "userThunksFirebaseError: Missing or insufficient permissions.", go to your firebase console and fix your firestore query rules: if request.auth != null'
         );
-        SET_ERROR(null)
+      SET_ERROR(null);
+      
+      return userLogged
     } catch (error) {
       console.warn(error);
       dispatch(

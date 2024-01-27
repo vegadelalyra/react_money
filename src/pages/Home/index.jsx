@@ -6,7 +6,7 @@ import Navbar from './components/Navbar';
 import History from './components/History';
 import ActionMenu from './components/ActionMenu';
 import { useSelector, useDispatch } from 'react-redux';
-import { setBalance } from '../../store/slices/home/homeSlice';
+import { SET_BALANCE } from '../../store/slices/home/homeSlice';
 import './HomePage.sass';
 
 const Home = () => {
@@ -15,7 +15,7 @@ const Home = () => {
     const dispatch = useDispatch();
 
     const updateBalance = newBalance => {
-        dispatch(setBalance(newBalance));
+        dispatch(SET_BALANCE(newBalance));
     };
 
     return (
@@ -28,9 +28,9 @@ const Home = () => {
             <Banner />
             <ActionMenu />
             <History transactions={transactions} />
-            {/* <div className='footer'>
+            <footer>
                 <Navbar />
-            </div> */}
+            </footer>
         </div>
     );
 };

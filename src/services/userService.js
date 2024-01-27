@@ -45,7 +45,6 @@ export const loginFromFireStore = async userData => {
             photoUrl: userData.photoURL,
             email: userData.email,
             uid: userData.uid,
-            accessToken: userData.accessToken,
         };
         return await createUserInCollection(userData.uid, newUser);
     } catch (error) {

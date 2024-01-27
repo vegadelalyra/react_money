@@ -52,7 +52,6 @@ onAuthStateChanged(auth, user => {
             photoURL: user.photoURL,
             email: user.email,
             uid: user.uid,
-            accessToken: user.accessToken,
         };
         store.dispatch(SET_USER(serializedUser));
         store.dispatch(SET_IS_AUTHENTICATED(true));
