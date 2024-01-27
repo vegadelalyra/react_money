@@ -18,10 +18,6 @@ const NotificationProfile = () => {
     }
   };
 
-  useEffect(() => {
-    console.log('user.photoURL updated:', user.photoURL)
-  }, [user.photoURL])
-
   return (
     <header className={'notificationProfile'}>
       <CloudinaryImg
