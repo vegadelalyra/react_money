@@ -1,11 +1,11 @@
-// import './styles.sass'
 import React from 'react';
-import { useSelector, useDispatch } from 'react-redux';
 import Balance from './components/Balance';
 import NotificationProfile from './components/NotificationProfile';
 import Banner from './components/Banner';
 import Navbar from './components/Navbar';
 import History from './components/History';
+import ActionMenu from './components/ActionMenu';
+import { useSelector, useDispatch } from 'react-redux';
 import { setBalance } from '../../store/slices/home/homeSlice';
 import './HomePage.sass';
 
@@ -18,8 +18,6 @@ const Home = () => {
         dispatch(setBalance(newBalance));
     };
 
-    const swapImages = ['./assets/swap01.svg'];
-
     return (
         <div className='home'>
             <Balance
@@ -27,8 +25,8 @@ const Home = () => {
                 setBalance={updateBalance}
             />
             <NotificationProfile />
-            <Banner images={swapImages} />
-            <Navbar />
+            <Banner />
+            <ActionMenu />
             <History transactions={transactions} />
             <div className='footer'>
                 <Navbar />

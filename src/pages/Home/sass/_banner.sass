@@ -1,42 +1,66 @@
-.banner
-  display: flex
-  align-items: center
+.banner__container
+  position: absolute
+  top: 150px
+  .banner
+    gap: 25px
+    display: flex
+    align-items: center
+    background-color: rgba(241, 246, 253, 1)
+    position: relative
+    right: 7px
+    height: 147px
+    width: 342px
+    border-radius: 8px
+    box-shadow: 0px 0px 1px 0px rgba(23, 26, 31, 0.15)
+    box-shadow: 0px 0px 2px 0px rgba(23, 26, 31, 0.2)
+    box-shadow: 100px
 
-  .image
-    flex: 1
+    div
+      cursor: context-menu
+      display: flex
+      flex-flow: column
+      gap: 40px
+      .description
+        font-weight: 700
+        line-height: 22px
+        text-align: start
+        font-family: 'Arimo'
+        color: rgba(23, 26, 31, 1)
+        width: 153px
+      .aButton
+        font-family: 'DM Sans'
+        line-height: 18px
+        font-weight: 400
+        font-size: 11px
+        width: 109px
+        height: 28px
+        border: 1px solid rgba(23, 26, 31, 1)
+        color: rgba(23, 26, 31, 1)
+        border-radius: 8px
+        display: flex
+        align-items: center
+        justify-content: center
+        cursor: pointer
 
-  .content
-    flex: 1
-    padding: 1rem
-
-  .title
-    font-size: 1.2rem
-    font-weight: bold
-    margin-bottom: 0.5rem
-
-  .button
-    border: none
-    border-radius: 5px
-    padding: 0.5rem 1rem
-    font-size: 1rem
-    cursor: pointer
-    background-color: rgba(222, 225, 230, 1)
-    color: white
+    .bannerSVG
+      position: relative
+      top: 10px
 
   .indicator
     display: flex
-    justify-content: space-between
-    margin-top: 1rem
+    position: relative
+    justify-content: center
+    top: 160px
+    gap: 5px
 
   .dot
-    width: 8px
-    height: 8px
-    border-radius: 50%
-    background-color: gray
-    margin-right: 0.5rem
+    width: 6px
+    height: 6px
+    border-radius: 3px
+    background-color: rgba(222, 225, 230, 1)
 
   .dot--active
-    background-color: blue
-    width: 20px
-    height: 5px
-    border-radius: 2px
+    background-color: rgba(30, 100, 221, 1)
+    width: 22px
+    height: 6px
+    border-radius: 3px
