@@ -9,7 +9,7 @@ import CloudinaryImg from '../../components/CloudinaryImg';
 const LoginPage = () => {
     const dispatch = useDispatch();
 
-    const handleGoogleLogin = async () => {
+    const handleGoogleLogin = () => {
         try {
             dispatch(loginGoogle());
         } catch (error) {

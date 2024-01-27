@@ -6,20 +6,30 @@ const userSlice = createSlice({
         isAuthenticated: false,
         user: null,
         error: null,
+        photoURL: null,
     },
     reducers: {
-        setUser: (state, action) => {
+        SET_USER: (state, action) => {
             state.user = action.payload;
         },
 
-        setError: (state, action) => {
+        SET_PHOTO_URL: (state, action) => {
+            state.photoURL = action.payload
+        },
+
+        SET_ERROR: (state, action) => {
             state.error = action.payload;
         },
-        setIsAuthenticated: (state, action) => {
+        SET_IS_AUTHENTICATED: (state, action) => {
             state.isAuthenticated = action.payload;
         },
     },
 });
 
-export const { setUser, setError, setIsAuthenticated } = userSlice.actions;
+export const {
+    SET_USER,
+    SET_PHOTO_URL,
+    SET_ERROR,
+    SET_IS_AUTHENTICATED,
+} = userSlice.actions;
 export default userSlice.reducer;

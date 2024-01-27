@@ -2,8 +2,7 @@
 import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import Balance from './components/Balance';
-import Bell from './components/Bell';
-import Profile from './components/Profile';
+import NotificationProfile from './components/NotificationProfile';
 import Banner from './components/Banner';
 import Navbar from './components/Navbar';
 import History from './components/History';
@@ -27,8 +26,7 @@ const Home = () => {
                 balance={balance}
                 setBalance={updateBalance}
             />
-            <Bell />
-            <Profile />
+            <NotificationProfile />
             <Banner images={swapImages} />
             <Navbar />
             <History transactions={transactions} />

@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import CloudinaryImg from '../../../components/CloudinaryImg';
-import eye_svg from '../assets/eye.svg';
 
 const Balance = ({ balance, setBalance }) => {
     const [visible, setVisible] = useState(true);
@@ -8,7 +7,7 @@ const Balance = ({ balance, setBalance }) => {
     const toggleVisibility = () => setVisible(!visible);
 
     return (
-        <div className='balance'>
+        <main className='balance'>
             <span>Balance</span>
             <div
                 className='balance__symbols'
@@ -23,7 +22,7 @@ const Balance = ({ balance, setBalance }) => {
                     alt='Hide balance?'
                 />
             </div>
-        </div>
+        </main>
     );
 };
 

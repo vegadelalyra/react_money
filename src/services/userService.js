@@ -30,7 +30,7 @@ export const getUserFromCollection = async uid => {
 
         return null;
     } catch (error) {
-        console.warn(error);
+        console.warn('USER DOES NOT EXIST. REGISTERING.', error);
         return false;
     }
 };
@@ -43,6 +43,8 @@ export const loginFromFireStore = async userData => {
         const newUser = {
             name: userData.displayName,
             photoUrl: userData.photoURL,
+            email: userData.email,
+            uid: userData.uid,
             accessToken: userData.accessToken,
         };
         return await createUserInCollection(userData.uid, newUser);

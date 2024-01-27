@@ -1,6 +1,6 @@
 import { signInWithPopup, signOut } from 'firebase/auth';
 import { auth, googleAuthProvider } from '../../../firebase';
-import { setError, setIsAuthenticated, setUser } from './userSlice';
+import { SET_ERROR, SET_IS_AUTHENTICATED, SET_USER } from './userSlice';
 import { loginFromFireStore } from '../../../services/userService';
 
 export const loginGoogle = () => {
@@ -10,14 +10,19 @@ export const loginGoogle = () => {
         try {
             const userCredentials = await signInWithPopup(auth, provider);
             const userLogged = await loginFromFireStore(userCredentials.user);
-            console.log(userLogged);
-            dispatch(setIsAuthenticated(true));
-            dispatch(setUser(userLogged));
+
+            if (!userLogged)
+                throw Error(
+                    'if cause: "userThunksFirebaseError: Missing or insufficient permissions.", go to your firebase console and fix your firestore query rules: if request.auth != null'
+                );
+
+            dispatch(SET_IS_AUTHENTICATED(true));
+            dispatch(SET_USER(userLogged));
         } catch (error) {
-            console.warn(error)
-            dispatch(setIsAuthenticated(false));
+            console.warn(error);
+            dispatch(SET_IS_AUTHENTICATED(false));
             dispatch(
-                setError({
+                SET_ERROR({
                     error: true,
                     code: error.code,
                     message: error.message,
@@ -30,12 +35,12 @@ export const loginGoogle = () => {
 export const logoutAsync = () => async dispatch => {
     try {
         await signOut(auth);
-        dispatch(setIsAuthenticated(false));
-        dispatch(setUser(null));
-        dispatch(setError(null));
+        dispatch(SET_IS_AUTHENTICATED(false));
+        dispatch(SET_USER(null));
+        dispatch(SET_ERROR(null));
     } catch (error) {
         dispatch(
-            setError({
+            SET_ERROR({
                 error: true,
                 code: error.code,
                 message: error.message,

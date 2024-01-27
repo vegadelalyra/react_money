@@ -1,15 +1,22 @@
 // Import the functions you need from the SDKs you need
 import { initializeApp } from 'firebase/app';
 import {
+    browserLocalPersistence,
+    browserSessionPersistence,
     getAuth,
     GoogleAuthProvider,
     onAuthStateChanged,
+    setPersistence,
 } from 'firebase/auth';
 import { getFirestore } from 'firebase/firestore';
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
 import store from '/src/store/index';
-import { setIsAuthenticated, setUser } from './store/slices/user/userSlice';
+import {
+    SET_IS_AUTHENTICATED,
+    SET_PHOTO_URL,
+    SET_USER,
+} from './store/slices/user/userSlice';
 
 // Your web app's Firebase configuration
 const firebaseConfig = {
@@ -26,20 +33,35 @@ const app = initializeApp(firebaseConfig);
 
 const auth = getAuth(app);
 auth.useDeviceLanguage();
+/* 
+FIREBASE BROWSER SESSION PERSISTENCE
 
+    SESSION:{ browserSessionPersistence }
+        Auth state will be cleared upon browser/tab close.
+
+    LOCAL: { browserLocalPersistence }
+        Auth state will be persisted even after browser/tab close, but cleared when the user logs out.
+
+    NONE:
+        Auth state will not persist between page reloads.
+*/
+setPersistence(auth, browserSessionPersistence);
 onAuthStateChanged(auth, user => {
     if (user) {
         const serializedUser = {
-            uid: user.uid,
-            displayName: user.displayName,
+            name: user.displayName,
+            photoURL: user.photoURL,
             email: user.email,
-            photoURL: user.photoURL
-        }
-        store.dispatch(setUser(serializedUser));
-        store.dispatch(setIsAuthenticated(true));
+            uid: user.uid,
+            accessToken: user.accessToken,
+        };
+        store.dispatch(SET_USER(serializedUser));
+        store.dispatch(SET_PHOTO_URL(serializedUser.photoURL));
+        store.dispatch(SET_IS_AUTHENTICATED(true));
     } else {
-        store.dispatch(setUser(null));
-        store.dispatch(setIsAuthenticated(false));
+        store.dispatch(SET_USER(null));
+        store.dispatch(SET_PHOTO_URL(null));
+        store.dispatch(SET_IS_AUTHENTICATED(false));
     }
 });
 
