@@ -9,6 +9,12 @@ const Banner = () => {
     'makaia-transfers-react/home/swap01',
   ];
 
+  const handleDiscoverClick = () => {
+    const urlToDiscoverNow = 'https://github.com/vegadelalyra'
+
+    window.open(urlToDiscoverNow, '_blank')
+  }
+  
   return (
     <aside className='banner__container'>
       <section className='banner'>
@@ -18,10 +24,10 @@ const Banner = () => {
           containerClss={'bannerSVG'}
         />
         <div>
-          <span className='description'>
+          <span className='description' >
             Unleash exclusive rewards & benefits
           </span>
-          <span className='aButton'>Discover now</span>
+          <span className='aButton' onClick={handleDiscoverClick}>Discover now</span>
         </div>
       </section>
       <div className='indicator'>
