@@ -1,16 +1,14 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
-import App from './App.jsx';
 import store from './store';
 import { Provider } from 'react-redux';
-import { BrowserRouter as Router } from 'react-router-dom';
+import AppRouter from './router';
+import './global.sass'
 
 ReactDOM.createRoot(document.getElementById('root')).render(
     <React.StrictMode>
         <Provider store={store}>
-            <Router>
-                <App />
-            </Router>
+            <AppRouter />
         </Provider>
     </React.StrictMode>
 );
