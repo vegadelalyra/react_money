@@ -1,20 +1,31 @@
 // ActionMenu.js
 import React from 'react';
 import CloudinaryImg from '../../../components/CloudinaryImg';
-import { SET_BALANCE } from '../../../store/slices/home/homeSlice';
-import { useDispatch } from 'react-redux';
-
+import { useDispatch, useSelector } from 'react-redux';
+import { SET_BALANCE } from '../../../store/slices/account/accountSlice';
+import { updateAccountData } from '../../../store/slices/account/accountThunks';
 
 const ActionMenu = () => {
-  const dispatch = useDispatch()
+  const dispatch = useDispatch();
+  const balance = useSelector(state => state.account.balance);
 
-  const IncrustedCircle = ({ publicId, alt, text, imgCls, disabled = false, onClick }) => {
+  const IncrustedCircle = ({
+    publicId,
+    alt,
+    text,
+    imgCls,
+    disabled = false,
+    onClick,
+  }) => {
     return (
-      <div className={`actionMenuItem ${disabled ? 'disabled' : ''}`} onClick={onClick}>
+      <div
+        className={`actionMenuItem ${disabled ? 'disabled' : ''}`}
+        onClick={onClick}>
         <CloudinaryImg
           containerClss={'cloudinaryImgWrapper'}
-          publicId={publicId} 
-          alt={alt} imgClss={imgCls}
+          publicId={publicId}
+          alt={alt}
+          imgClss={imgCls}
         />
         {text}
       </div>
@@ -22,32 +33,38 @@ const ActionMenu = () => {
   };
 
   const addMoneyClicked = () => {
-    dispatch(SET_BALANCE(1000))
-  }
+    const newBalance = 1000 + balance;
+    dispatch(updateAccountData({ balance: newBalance }));
+  };
 
   const QRCodeClicked = () => {
-    dispatch(SET_BALANCE(-1000))
-  }
+    const newBalance = balance - 1000;
+    dispatch(SET_BALANCE({ balance: newBalance }));
+  };
 
   return (
     <nav className='actionMenu__container'>
       <section className='actionMenu'>
         <IncrustedCircle
           publicId={'makaia-transfers-react/home/addMoney'}
-          alt={'add'} onClick={addMoneyClicked}
+          alt={'add'}
+          onClick={addMoneyClicked}
           text={'Add money'}></IncrustedCircle>
         <IncrustedCircle
           publicId={'makaia-transfers-react/home/QR'}
-          alt={'QR'} onClick={QRCodeClicked}
-          text={'QR code'} disabled
+          alt={'QR'}
+          onClick={QRCodeClicked}
+          text={'QR code'}
           imgCls={'qr'}></IncrustedCircle>
         <IncrustedCircle
           publicId={'makaia-transfers-react/home/transfer'}
-          alt={'swap'} imgCls={'transfer'}
+          alt={'swap'}
+          imgCls={'transfer'}
           text={'Transfer'}></IncrustedCircle>
         <IncrustedCircle
           publicId={'makaia-transfers-react/home/statistic'}
-          alt={'stat'} disabled
+          alt={'stat'}
+          disabled
           text={'Statistic'}></IncrustedCircle>
       </section>
     </nav>
