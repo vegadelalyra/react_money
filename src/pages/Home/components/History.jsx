@@ -7,7 +7,7 @@ const History = ({ transactions }) => {
   const negativeTransfer = transfer + '-transfer';
 
   const transactionIcon = transaction =>
-    transaction.change > 0 ? positiveTransfer : negativeTransfer;
+    transaction.charge > 0 ? positiveTransfer : negativeTransfer;
 
   const Formater = new Intl.NumberFormat('en-US', {
     style: 'currency',
@@ -16,9 +16,9 @@ const History = ({ transactions }) => {
     maximumFractionDigits: 2,
   });
 
-  const transactionChange = transaction => {
-    const symbol = transaction.change > 0 ? '+' : '-';
-    return symbol + Formater.format(transaction.change);
+  const transactioncharge = transaction => {
+    const symbol = transaction.charge > 0 ? '+' : '';
+    return symbol + Formater.format(transaction.charge);
   };
 
   return (
@@ -34,22 +34,24 @@ const History = ({ transactions }) => {
           {transactions.map(transaction => (
             <li key={transaction.id}>
               {/* Replace with actual transaction data and styling */}
-              <span>
-                {' '}
-                <CloudinaryImg publicId={transactionIcon(transaction)} />{' '}
-              </span>
-              <div className='info'>
-                <span className='name'>{transaction.name}</span>
-                <div className='details'>
-                  <span>{transaction.section} • </span>
-                  <span>{transaction.date}</span>
+              <div className="iconAndInfo">
+                <span>
+                  {' '}
+                  <CloudinaryImg publicId={transactionIcon(transaction)} />{' '}
+                </span>
+                <div className='info'>
+                  <span className='name'>{transaction.name}</span>
+                  <div className='details'>
+                    <span>{transaction.section} • </span>
+                    <span>{transaction.date}</span>
+                  </div>
                 </div>
               </div>
               <span
-                className={`change ${
-                  transaction.change > 0 ? 'positiveChange' : 'negativeChange'
+                className={`charge ${
+                  transaction.charge > 0 ? 'positivecharge' : 'negativecharge'
                 }`}>
-                {transactionChange(transaction)}
+                {transactioncharge(transaction)}
               </span>
             </li>
           ))}

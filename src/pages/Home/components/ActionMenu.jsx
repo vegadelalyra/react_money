@@ -4,7 +4,7 @@ import CloudinaryImg from '../../../components/CloudinaryImg';
 import { useDispatch, useSelector } from 'react-redux';
 import { updateAccountData } from '../../../store/slices/account/accountThunks';
 
-const ActionMenu = () => {
+const ActionMenu = ({ onTransferClicked }) => {
   const dispatch = useDispatch();
   const balance = useSelector(state => state.account.balance);
 
@@ -57,7 +57,7 @@ const ActionMenu = () => {
           imgCls={'qr'}></IncrustedCircle>
         <IncrustedCircle
           publicId={'makaia-transfers-react/home/transfer'}
-          alt={'swap'}
+          alt={'swap'} onClick={onTransferClicked}
           imgCls={'transfer'}
           text={'Transfer'}></IncrustedCircle>
         <IncrustedCircle

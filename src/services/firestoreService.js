@@ -80,7 +80,7 @@ export const loginFromFireStore = async userData => {
   }
 };
 
-export const updateAccountInCollection = async (identifier, accountData) => {
+export const updateAccountInSubCollection = async (identifier, accountData) => {
   try {
     const userRef = doc(firestore, collectionName, identifier);
     const accountCollectionRef = collection(userRef, 'account');
@@ -115,22 +115,33 @@ export const updateAccountInCollection = async (identifier, accountData) => {
   }
 };
 
-
-export const getAccountFromSubCollection = async (identifier) => {
+export const getAccountFromSubCollection = async identifier => {
   try {
     const userRef = doc(firestore, collectionName, identifier);
     const userDoc = await getDoc(userRef);
 
-    if (userDoc.exists()) {
+    const subCollectionName = `${collectionName}/${identifier}/account`;
+    const accountRef = doc(firestore, subCollectionName, appName);
+    const account = await getDoc(accountRef);
+
+    if (userDoc.exists())
       return {
-        id: userDoc.id,
-        ...userDoc.data(),
+        account: account.data(),
+        accountRef,
       };
-    }
 
     return null;
   } catch (error) {
     console.error('Error fetching user from collection:', error);
     throw new Error('Error fetching user data');
   }
+};
+
+export const saveTransactionInAccountSubCollection = async (
+  transaction,
+  identifier
+) => {
+  const { account, accountRef } = await getAccountFromSubCollection(identifier);
+  account.transactions.push(transaction);
+  await updateDoc(accountRef, account);
 };
