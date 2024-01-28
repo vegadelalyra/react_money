@@ -1,6 +1,7 @@
 import { signInWithPopup, signOut } from 'firebase/auth';
 import { auth, googleAuthProvider } from '../../../services/firebaseService';
 import { SET_ERROR, SET_IS_AUTHENTICATED, SET_USER } from './userSlice';
+import { SET_IS_FETCHING_DATA } from '../../../store/slices/app/appSlice'
 import { loginFromFireStore } from '../../../services/firestoreService';
 import {
   SET_BALANCE,
@@ -13,9 +14,7 @@ export const loginGoogle = () => {
 
   return async dispatch => {
     try {
-      const userCredentials = await signInWithPopup(auth, provider);
-
-      return fetchAccountFromDB(userCredentials)
+      await signInWithPopup(auth, provider);
     } catch (error) {
       console.warn(error);
       dispatch(
@@ -46,9 +45,10 @@ export const logoutAsync = () => async dispatch => {
   }
 };
 
-export const fetchAccountFromDB = (userCredentials, dispatch) => {
+export const fetchAccountFromDB = async (userCredentials, dispatch) => {
   try {
-    const userLogged = loginFromFireStore(userCredentials.user);
+    dispatch(SET_IS_FETCHING_DATA(true))
+    const userLogged = await loginFromFireStore(userCredentials.user);
 
     if (!userLogged)
       throw Error(
@@ -60,6 +60,7 @@ export const fetchAccountFromDB = (userCredentials, dispatch) => {
     dispatch(SET_CONTACTS(userLogged.account.contacts));
     dispatch(SET_TRANSACTIONS(userLogged.account.transactions));
 
+    dispatch(SET_IS_FETCHING_DATA(false))
     return userLogged;
   } catch (error) {
     console.warn(error);

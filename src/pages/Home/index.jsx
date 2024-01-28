@@ -1,4 +1,3 @@
-import React, { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { SET_BALANCE } from '../../store/slices/account/accountSlice';
 import {
@@ -10,20 +9,16 @@ import {
   Navbar,
 } from './components';
 import './styles.sass';
-import { fetchAccountFromDB } from '../../store/slices/user/userThunks';
 
 const Home = () => {
   const balance = useSelector(state => state.account.balance);
   const transactions = useSelector(state => state.account.transactions);
+
   const dispatch = useDispatch();
 
   const updateBalance = newBalance => {
     dispatch(SET_BALANCE(newBalance));
   };
-
-  // useEffect(() => {
-  //   dispatch(fetchAccountFromDB())
-  // })
 
   return (
     <div className='home'>

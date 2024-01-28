@@ -2,7 +2,6 @@
 import React from 'react';
 import CloudinaryImg from '../../../components/CloudinaryImg';
 import { useDispatch, useSelector } from 'react-redux';
-import { SET_BALANCE } from '../../../store/slices/account/accountSlice';
 import { updateAccountData } from '../../../store/slices/account/accountThunks';
 
 const ActionMenu = () => {
@@ -39,7 +38,7 @@ const ActionMenu = () => {
 
   const QRCodeClicked = () => {
     const newBalance = balance - 1000;
-    dispatch(SET_BALANCE({ balance: newBalance }));
+    dispatch(updateAccountData({ balance: newBalance }));
   };
 
   return (

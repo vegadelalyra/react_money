@@ -6,21 +6,25 @@ export const updateAccountData = accountData => async (dispatch, getState) => {
     const { user } = getState();
     const { email } = user.user;
     
-    // Update the account in Firestore
-    await updateAccountInCollection(email, accountData);
+    const updateFirestorePromise = updateAccountInCollection(email, accountData);
 
     // Dispatch actions to update Redux store
+    const dispatchPromises = [];
+  
     if (accountData.balance !== undefined) {
-      dispatch(SET_BALANCE(accountData.balance));
+      dispatchPromises.push(dispatch(SET_BALANCE(accountData.balance)));
     }
-
+  
     if (accountData.transactions !== undefined) {
-      dispatch(SET_TRANSACTIONS(accountData.transactions));
+      dispatchPromises.push(dispatch(SET_TRANSACTIONS(accountData.transactions)));
     }
-
+  
     if (accountData.contacts !== undefined) {
-      dispatch(SET_CONTACTS(accountData.contacts));
+      dispatchPromises.push(dispatch(SET_CONTACTS(accountData.contacts)));
     }
+  
+    // Wait for both Firestore update and Redux store updates
+    await Promise.all([updateFirestorePromise, ...dispatchPromises]);
   } catch (error) {
     console.error('cause: updateAccountData. error:', error);
   }
