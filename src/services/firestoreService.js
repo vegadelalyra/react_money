@@ -1,7 +1,16 @@
-import { collection, doc, getDoc, setDoc, addDoc } from 'firebase/firestore';
+import {
+  collection,
+  doc,
+  getDoc,
+  setDoc,
+  addDoc,
+  getDocs,
+  updateDoc,
+} from 'firebase/firestore';
 import { firestore } from './firebaseService';
 
 const collectionName = 'makaiapp_clients';
+const appName = 'makaiapp';
 
 export const createUserInCollection = async (uid, newUser) => {
   try {
@@ -13,9 +22,9 @@ export const createUserInCollection = async (uid, newUser) => {
     const accountCollectionRef = collection(newUserRef, 'account');
 
     // Create the makaiapp doc on account collection
-    const customAccountDocRef = doc(accountCollectionRef, 'makaiapp')
+    const customAccountDocRef = doc(accountCollectionRef, appName);
     await setDoc(customAccountDocRef, {
-      _makaiaService: 'makaiapp',
+      _makaiaService: appName,
       balance: 0,
       transactions: [],
       contacts: [],
@@ -36,9 +45,9 @@ export const getUserFromCollection = async email => {
     const userRef = doc(firestore, collectionName, email);
     const user = await getDoc(userRef);
 
-    const subCollectionName = `${collectionName}/${email}/account`
-    const accountRef = doc(firestore, subCollectionName, 'makaiapp') 
-    const account = await getDoc(accountRef)
+    const subCollectionName = `${collectionName}/${email}/account`;
+    const accountRef = doc(firestore, subCollectionName, appName);
+    const account = await getDoc(accountRef);
 
     if (user.exists())
       return {
@@ -68,5 +77,60 @@ export const loginFromFireStore = async userData => {
   } catch (error) {
     console.warn(error);
     return false;
+  }
+};
+
+export const updateAccountInCollection = async (identifier, accountData) => {
+  try {
+    const userRef = doc(firestore, collectionName, identifier);
+    const accountCollectionRef = collection(userRef, 'account');
+
+    // Checks account subcollecction docs
+    const querySnapshot = await getDocs(accountCollectionRef);
+    if (querySnapshot.empty) {
+      // If account does not exist, create a new one
+      const customAccountDocRef = doc(accountCollectionRef, appName);
+      await setDoc(customAccountDocRef, accountData);
+    } else {
+      // If account exists, find and update the correct document
+      const accountDocs = querySnapshot.docs;
+
+      const targetDoc = accountDocs.find(
+        doc => doc.data()._makaiaService === appName
+      );
+
+      if (targetDoc) {
+        await updateDoc(targetDoc.ref, accountData);
+      } else {
+        // If the document is not found, you may decide to create a new one or handle it accordingly
+        console.warn('Target document not found. Creating a new one.');
+        await addDoc(accountCollectionRef, accountData);
+      }
+    }
+
+    return true;
+  } catch (error) {
+    console.error('cause: firestoreService. error:', error);
+    return false;
+  }
+};
+
+
+export const getAccountFromSubCollection = async (identifier) => {
+  try {
+    const userRef = doc(firestore, collectionName, identifier);
+    const userDoc = await getDoc(userRef);
+
+    if (userDoc.exists()) {
+      return {
+        id: userDoc.id,
+        ...userDoc.data(),
+      };
+    }
+
+    return null;
+  } catch (error) {
+    console.error('Error fetching user from collection:', error);
+    throw new Error('Error fetching user data');
   }
 };

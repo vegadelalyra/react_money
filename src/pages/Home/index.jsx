@@ -1,24 +1,29 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { SET_BALANCE } from '../../store/slices/home/homeSlice';
+import { SET_BALANCE } from '../../store/slices/account/accountSlice';
 import {
-    Balance,
-    NotificationProfile,
-    Banner,
-    ActionMenu,
-    History,
-    Navbar,
+  Balance,
+  NotificationProfile,
+  Banner,
+  ActionMenu,
+  History,
+  Navbar,
 } from './components';
-import './HomePage.sass';
+import './styles.sass';
+import { fetchAccountFromDB } from '../../store/slices/user/userThunks';
 
 const Home = () => {
-  const balance = useSelector(state => state.home.balance);
-  const transactions = useSelector(state => state.home.transactions);
+  const balance = useSelector(state => state.account.balance);
+  const transactions = useSelector(state => state.account.transactions);
   const dispatch = useDispatch();
 
   const updateBalance = newBalance => {
     dispatch(SET_BALANCE(newBalance));
   };
+
+  // useEffect(() => {
+  //   dispatch(fetchAccountFromDB())
+  // })
 
   return (
     <div className='home'>
