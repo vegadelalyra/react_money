@@ -5,7 +5,36 @@ const accountSlice = createSlice({
   initialState: {
     contacts: [],
     balance: 0,
-    transactions: [],
+    transactions: [
+      {
+        id: 123,
+        name: 'Anthony Robinson',
+        section: 'Project bonus',
+        date: '21/08/23',
+        change: 300,
+      },
+      {
+        id: 123,
+        name: 'Anthony Robinson',
+        section: 'Project bonus',
+        date: '21/08/23',
+        change: 300,
+      },
+      {
+        id: 123,
+        name: 'Anthony Robinson',
+        section: 'Project bonus',
+        date: '21/08/23',
+        change: 300,
+      },
+      {
+        id: 123,
+        name: 'Anthony Robinson',
+        section: 'Project bonus',
+        date: '21/08/23',
+        change: 300,
+      },
+    ],
   },
   reducers: {
     SET_CONTACTS: (state, action) => {

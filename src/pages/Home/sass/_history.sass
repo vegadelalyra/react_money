@@ -1,17 +1,65 @@
 .history__container
   position: absolute
-  top: 440px
+  top: 390px
   padding: 30px
 
   .history
     position: relative
     list-style: none
 
-    div
+    ul
+      list-style: none
+      height: 259px
+      overflow-y: auto
+      width: 350px
+
+      li
+        display: flex
+        justify-content: space-between
+        width: 323px
+        height: 68px
+        stroke-width: 1px
+        border-bottom: 1px solid #F3F4F6
+        padding: 10px 0
+        margin: 10px 0
+
+      .info
+        display: flex
+        flex-flow: column
+        align-items: flex-start
+        justify-content: center
+
+      .details
+        color: #9095A0
+        font-family: "DM Sans"
+        font-size: 14px
+        font-style: normal
+        font-weight: 400
+        line-height: 22px
+        display: flex
+        justify-content: flex-start
+        gap: 5px
+
+      .change
+        text-align: right
+        font-family: "DM Sans"
+        font-size: 16px
+        font-style: normal
+        font-weight: 500
+        line-height: 26px
+
+      .positiveChange
+        color: #17A948
+
+      .negativeChange
+        color: #DE3B40
+
+    &__title
       display: flex
       align-items: center
       justify-content: space-between
       width: 330px
+
       h2
         font-family: Arimo
         font-weight: 700
@@ -19,7 +67,7 @@
         line-height: 30px
         color: rgba(23, 26, 31, 1)
       span
-        width: 92px
+        width: 70px
         height: 36px
         font-family: 'DM Sans'
         font-weight: 400
@@ -42,8 +90,13 @@
       margin-right: 1rem
 
     .name
-      font-size: 1rem
-      font-weight: bold
+      color: #323842
+      font-family: Arimo
+      font-size: 16px
+      font-style: normal
+      font-weight: 400
+      line-height: 26px
+      width: fit-content
 
     .section
       font-size: 0.8rem

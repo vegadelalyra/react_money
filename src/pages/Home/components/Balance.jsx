@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import CloudinaryImg from '../../../components/CloudinaryImg';
 import { useSelector } from 'react-redux';
 
-const Balance = ({ balance, setBalance }) => {
+const Balance = ({ balance }) => {
   const isFetchingData = useSelector(state => state.app.isFetchingData);
   const [visible, setVisible] = useState(true);
 
