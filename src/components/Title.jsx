@@ -2,10 +2,11 @@ import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import CloudinaryImg from './CloudinaryImg';
 
-const Title = ({ title, backTo = '/', pageName }) => {
+const Title = ({ title, backTo = '/', pageName, extraLogic }) => {
   const navigate = useNavigate();
 
   const onBackArrowClicked = () => {
+    extraLogic()
     return navigate(backTo);
   };
 

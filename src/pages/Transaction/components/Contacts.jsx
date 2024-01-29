@@ -1,13 +1,21 @@
 import React from 'react';
 import CloudinaryImg from '../../../components/CloudinaryImg';
+import { useDispatch } from 'react-redux';
+import { SET_CONTACT_TO_TRANSFER } from '../../../store/slices/app/appSlice';
 
 const Contacts = ({ contacts }) => {
+  const dispatch = useDispatch()
+  
+  const onContactClicked = contact => {
+    dispatch(SET_CONTACT_TO_TRANSFER(contact))
+  }
+  
   return (
     <main className='contacts_container'>
       <h4>Contact list</h4>
       <ul>
         {contacts.map(contact => (
-          <li key={contact.id}>
+          <li key={contact.id} onClick={() => onContactClicked(contact)}>
             <div className='imgArticle'>
               <img src={contact.photoURL} className='contact_photo' />
               <article>

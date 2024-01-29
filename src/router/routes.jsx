@@ -4,9 +4,13 @@ import LoginPage from '../pages/LoginPage';
 import Home from '../pages/Home';
 import Transaction from '../pages/Transaction';
 import NewPayeePage from '../pages/NewPayee';
+import TransferTo from '../pages/TransferTo';
 
 const AppRoutes = () => {
   const isAuthenticated = useSelector(state => state.user.isAuthenticated);
+  const isContactToTransferChosen = useSelector(
+    state => state.app.contactToTransfer
+  );
 
   return (
     <Routes>
@@ -16,7 +20,17 @@ const AppRoutes = () => {
       />
       <Route
         path='/transaction'
-        element={isAuthenticated ? <Transaction /> : <LoginPage />}
+        element={
+          isAuthenticated ? (
+            isContactToTransferChosen ? (
+              <TransferTo />
+            ) : (
+              <Transaction />
+            )
+          ) : (
+            <LoginPage />
+          )
+        }
       />
       <Route
         path='/newpayee'

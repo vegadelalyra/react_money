@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import Title from '../../components/Title';
-import './styles.sass';
 import CloudinaryImg from '../../components/CloudinaryImg';
+import './styles.sass';
 
 const NewPayeePage = () => {
   const [profileImage, setProfileImage] = useState('');
