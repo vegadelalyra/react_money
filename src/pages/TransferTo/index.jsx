@@ -2,7 +2,7 @@ import './styles.sass';
 import React from 'react';
 import Title from '../../components/Title';
 import { useDispatch, useSelector } from 'react-redux';
-import { SET_CONTACT_TO_TRANSFER } from '../../store/slices/app/appSlice';
+import { SET_CONTACT_TO_TRANSFER, SET_TRANSACTION_AMOUNT_SELECTED } from '../../store/slices/app/appSlice';
 import Payee from './components/payee';
 import TransactionBody from './components/TransactionBody';
 import { useNavigate } from 'react-router-dom';
@@ -18,9 +18,8 @@ const TransferTo = () => {
     return dispatch(SET_CONTACT_TO_TRANSFER(false));
   };
 
-  const onFormSubmitted = event => {
-    event.preventDefault();
-
+  const onFormSubmitted = transaction => {
+    dispatch(SET_TRANSACTION_AMOUNT_SELECTED(transaction))
     return navigate('/history');
   };
 

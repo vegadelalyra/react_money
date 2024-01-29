@@ -12,6 +12,7 @@ const Success = () => {
   const dispatch = useDispatch();
 
   const contact = useSelector(state => state.app.contactToTransfer);
+  const transaction = useSelector(state => state.app.transactionAmountSelected);
 
   const onBackClicked = () => {
     dispatch(SET_CONTACT_TO_TRANSFER(false));
@@ -28,7 +29,7 @@ const Success = () => {
       <Header onBackClicked={onBackClicked} />
       <span className='transferto'>Transfer to</span>
       <FavContact contact={contact} />
-      <Summary onBackToHomeClicked={onBackToHomeClicked} />
+      <Summary transaction={transaction} onBackToHomeClicked={onBackToHomeClicked} />
     </main>
   );
 };

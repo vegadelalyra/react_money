@@ -12,6 +12,9 @@ const AppRoutes = () => {
   const isContactToTransferChosen = useSelector(
     state => state.app.contactToTransfer
   );
+  const isTransferAmountChosen = useSelector(
+    state => state.app.transactionAmountSelected
+  );
 
   return (
     <Routes>
@@ -41,7 +44,7 @@ const AppRoutes = () => {
         path='/history'
         element={
           isAuthenticated ? (
-            isContactToTransferChosen ? (
+            isTransferAmountChosen ? (
               <Success />
             ) : (
               <Transaction />

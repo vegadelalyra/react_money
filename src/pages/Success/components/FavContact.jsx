@@ -8,7 +8,7 @@ const FavContact = ({ contact }) => {
       onClick={() => onContactClicked(contact)}>
       <div className='imgArticle'>
         <img
-          src={contact.photoURL}
+          src={contact.photoUrl}
           className='contact_photo'
         />
         <article>
@@ -16,7 +16,7 @@ const FavContact = ({ contact }) => {
           <span className={'contact_email'}>{contact.email}</span>
         </article>
       </div>
-      {contact.favorite ? (
+      {contact.isFavorite ? (
         <CloudinaryImg
           containerClss={'contact_fav'}
           publicId={'makaia-transfers-react/transaction/isFav'}

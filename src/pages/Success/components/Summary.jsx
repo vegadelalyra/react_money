@@ -1,13 +1,13 @@
 import React from 'react';
 
-const Summary = ({ onBackToHomeClicked }) => {
+const Summary = ({ onBackToHomeClicked, transaction }) => {
   return (
     <>
       <article className='summary'>
         <section className='summary_data'>
           <span className='summary_line'>
             <p className='summary_key'>Amount</p>
-            <p className='summary_value'>$150.00</p>
+            <p className='summary_value'>${transaction.amount}.00</p>
           </span>
           <span className='summary_line'>
             <p className='summary_key'>Transfer method</p>
@@ -15,21 +15,16 @@ const Summary = ({ onBackToHomeClicked }) => {
           </span>
           <span className='summary_line'>
             <p className='summary_key'>Time</p>
-            <p className='summary_value'>$150.00</p>
+            <p className='summary_value'>{transaction.time}</p>
           </span>
           <span className='summary_line'>
             <p className='summary_key'>Transaction ID</p>
-            <p className='summary_value'>$150.00</p>
+            <p className='summary_value'>{transaction.id}</p>
           </span>
         </section>
         <aside className='summary_note'>
           <span>Note</span>
-          <p>
-            Messagecolor: #171A1F; font-family: "DM Sans"; font-size: 12px;
-            font-style: normal; font-weight: 400; line-height: 20px;color:
-            #171A1F; font-family: "DM Sans"; font-size: 12px; font-style:
-            normal; font-weight: 400; line-height: 20px;
-          </p>
+          <p>{transaction.note}</p>
         </aside>
       </article>
       <footer className='summary_footer'>
