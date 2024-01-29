@@ -12,7 +12,7 @@ import { firestore } from './firebaseService';
 const collectionName = 'makaiapp_clients';
 const appName = 'makaiapp';
 
-export const createUserInCollection = async (uid, newUser) => {
+export const createUserInCollection = async newUser => {
   try {
     // Create user doc on makaiapp_clients collecion
     const newUserRef = doc(firestore, collectionName, newUser.email);
@@ -31,7 +31,6 @@ export const createUserInCollection = async (uid, newUser) => {
     });
 
     return {
-      id: uid,
       ...newUser,
     };
   } catch (error) {
@@ -68,12 +67,11 @@ export const loginFromFireStore = async userData => {
     if (existentUser) return existentUser;
 
     const newUser = {
-      name: userData.displayName,
-      photoUrl: userData.photoURL,
+      name: userData.displayName || userData.name,
+      photoUrl: userData.photoURL || userData.photoUrl,
       email: userData.email,
-      uid: userData.uid,
     };
-    return await createUserInCollection(userData.uid, newUser);
+    return await createUserInCollection(newUser);
   } catch (error) {
     console.warn(error);
     return false;
