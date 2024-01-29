@@ -1,4 +1,7 @@
 # Makaia React Money - Mobile-First Transaction App
+![imagen](https://github.com/vegadelalyra/react_money/assets/77188420/d6e41ffe-e39f-41bf-8a87-e3dabff0f462)![imagen](https://github.com/vegadelalyra/react_money/assets/77188420/504c5ae1-b091-479b-8dfd-32c147f1d16a)
+
+
 ## Overview
 
 Makaia React Money is a mobile-first web application designed for seamless financial transactions among your contacts. The app leverages various technologies, including ReactJS for the frontend, Cloudinary for on-demand image upload and download, and Firebase for hosting, database, and authentication services.
