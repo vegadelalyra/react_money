@@ -22,9 +22,10 @@ const Home = () => {
 
   const onTransferClicked = () => {
     if (!balance) return;
-    
+
     return navigate('/transaction')
 
+    // TEST TRANSACTION
     // const transactionCharge = 200;
     // const transaction = generateTransaction(
     //   'Pepita Pérez',

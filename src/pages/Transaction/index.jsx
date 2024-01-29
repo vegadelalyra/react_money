@@ -1,9 +1,22 @@
-import React from 'react'
+// LoginPage.js
+import './styles.sass';
+import React from 'react';
+import Title from './components/Title';
+import SearchBar from './components/SearchBar';
+import Categories from './components/Categories';
+import NewPayee from './components/NewPayee';
+import Contacts from './components/Contacts';
 
-const TransactionPage = () => {
+const LoginPage = () => {
   return (
-    <div>TransactionPage</div>
-  )
-}
+    <div className='transaction__page'>
+      <Title />
+      <SearchBar />
+      <Categories />
+      <NewPayee />
+      <Contacts />
+    </div>
+  );
+};
 
-export default TransactionPage
+export default LoginPage;

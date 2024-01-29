@@ -52,7 +52,7 @@ onAuthStateChanged(auth, user => {
     };
     store.dispatch(SET_USER(serializedUser));
     store.dispatch(SET_IS_AUTHENTICATED(true));
-    fetchAccountFromDB({ user }, store.dispatch);
+    // fetchAccountFromDB({ user }, store.dispatch);
   } else {
     store.dispatch(SET_USER(null));
     store.dispatch(SET_IS_AUTHENTICATED(false));

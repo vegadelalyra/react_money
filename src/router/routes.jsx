@@ -3,7 +3,6 @@ import { useSelector } from 'react-redux';
 import LoginPage from '../pages/LoginPage';
 import Home from '../pages/Home';
 import Transaction from '../pages/Transaction';
-import PrivateRoutes from './privateRoutes';
 
 const AppRoutes = () => {
   const isAuthenticated = useSelector(state => state.user.isAuthenticated);
@@ -14,15 +13,10 @@ const AppRoutes = () => {
         path='/'
         element={isAuthenticated ? <Home /> : <LoginPage />}
       />
-      <Route element={<PrivateRoutes isAuthenticated={isAuthenticated} />}>
-        <Route
-          path='/transaction'
-          element={<Transaction />}
-        />
-        {/* path='/transaction'
+      <Route
+        path='/transaction'
         element={isAuthenticated ? <Transaction /> : <LoginPage />}
-      /> */}
-      </Route>
+      />
     </Routes>
   );
 };

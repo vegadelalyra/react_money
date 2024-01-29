@@ -2,13 +2,14 @@ import React from 'react';
 import { Image, Transformation } from 'cloudinary-react';
 import cloudinaryConfig from '../../cloudinary.config';
 
-const CloudinaryImg = ({ publicId, width, imgClss, containerClss, alt, figcaption = '', imgId }) => {
+const CloudinaryImg = ({ publicId, width, imgClss, containerClss, alt, figcaption = '', imgId, onClick }) => {
     const handleContextMenu = event => {
         event.preventDefault();
     };
 
     return (
         <picture
+            onClick={onClick}
             onContextMenu={handleContextMenu}
             className={containerClss}>
             <Image
