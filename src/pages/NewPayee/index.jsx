@@ -1,16 +1,20 @@
+import './styles.sass';
 import React, { useRef, useState } from 'react';
 import Title from '../../components/Title';
 import CloudinaryImg from '../../components/CloudinaryImg';
-import './styles.sass';
 import { uploadImageToCloudinary } from '../../utils/uploadToCloudinary';
 import { updateAccountData } from '../../store/slices/account/accountThunks';
 import { useDispatch, useSelector } from 'react-redux';
 import { loginFromFireStore } from '../../services/firestoreService';
+import { SET_IS_ADDING_CONTACT } from '../../store/slices/app/appSlice';
+import { useNavigate } from 'react-router-dom';
 
 const NewPayeePage = () => {
+  const { isAddingContact } = useSelector(state => state.app);
   const { contacts } = useSelector(state => state.account);
 
   const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   let defaultProfileImg =
     'https://res.cloudinary.com/vegadelalyra/image/upload/v1706487993/makaia-transfers-react/transaction/test.png';
@@ -40,9 +44,11 @@ const NewPayeePage = () => {
 
     reader.onload = loadEvent => {
       const imgEl = document.getElementById('profileImage');
-      if (imgEl) imgEl.src = loadEvent.target.result;
 
-      setPhotoUrl(imgEl.src);
+      if (imgEl) {
+        imgEl.src = loadEvent.target.result;
+        setPhotoUrl(imgEl.src);
+      }
     };
     reader.readAsDataURL(file);
   };
@@ -84,8 +90,10 @@ const NewPayeePage = () => {
 
     if (!isValidEmail || !isValidName || sameCountry === undefined) return;
 
+    dispatch(SET_IS_ADDING_CONTACT(true));
+
     if (photoUrl !== defaultProfileImg)
-      defaultProfileImg = await uploadImageToCloudinary(file);
+      defaultProfileImg = await uploadImageToCloudinary(photoUrl);
 
     setPhotoUrl(defaultProfileImg);
 
@@ -110,10 +118,21 @@ const NewPayeePage = () => {
       sameCountry,
       isFavorite,
     });
+
+    dispatch(SET_IS_ADDING_CONTACT(false));
+    return navigate('/transaction');
   };
 
   return (
     <div className='newpayee__page'>
+      {isAddingContact && (
+        <div className='LOADING'>
+          <CloudinaryImg
+            containerClss={'spinner'}
+            publicId={'makaia-transfers-react/payeer/spinner'}
+          />
+        </div>
+      )}
       <Title
         title={'Add new payee'}
         backTo='/transaction'
