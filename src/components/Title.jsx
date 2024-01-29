@@ -1,17 +1,18 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import CloudinaryImg from './CloudinaryImg';
+import '../assets/title.sass'
 
-const Title = ({ title, backTo = '/', pageName, extraLogic }) => {
+const Title = ({ title, backTo = '/', extraLogic }) => {
   const navigate = useNavigate();
 
   const onBackArrowClicked = () => {
-    extraLogic()
+    if (extraLogic) extraLogic();
     return navigate(backTo);
   };
 
   return (
-    <section className={`${pageName}_title`}>
+    <section className={'custom_title'}>
       <CloudinaryImg
         containerClss={'back_arrow'}
         onClick={onBackArrowClicked}

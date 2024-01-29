@@ -33,7 +33,6 @@ const NewPayeePage = () => {
     <div className='newpayee__page'>
       <Title
         title={'Add new payee'}
-        pageName={'newpayee'}
         backTo='/transaction'
       />
 

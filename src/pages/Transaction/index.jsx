@@ -39,7 +39,6 @@ const TransactionPage = () => {
     <div className='transaction__page'>
       <Title
         title={'Transfer to'}
-        pageName={'transaction'}
       />
       <SearchBar
         searchTerm={searchTerm}
