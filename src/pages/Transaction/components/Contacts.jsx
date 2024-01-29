@@ -1,9 +1,6 @@
 import React from 'react';
-import { useSelector } from 'react-redux';
 
-const Contacts = () => {
-  const { contacts } = useSelector(state => state.account);
-
+const Contacts = ({ contacts }) => {
   return (
     <main className='contacts_container'>
       <h4>Contact list</h4>
