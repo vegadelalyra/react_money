@@ -51,6 +51,7 @@ const NewPayeePage = () => {
       }
     };
     reader.readAsDataURL(file);
+    defaultProfileImg = await uploadImageToCloudinary(file);
   };
   // [ENDING] -- CODE FOR IMG INPUT
 
@@ -91,11 +92,6 @@ const NewPayeePage = () => {
     if (!isValidEmail || !isValidName || sameCountry === undefined) return;
 
     dispatch(SET_IS_ADDING_CONTACT(true));
-
-    if (photoUrl !== defaultProfileImg)
-      defaultProfileImg = await uploadImageToCloudinary(photoUrl);
-
-    setPhotoUrl(defaultProfileImg);
 
     const newContact = {
       photoUrl,

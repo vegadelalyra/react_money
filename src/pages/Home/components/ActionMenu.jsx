@@ -3,10 +3,11 @@ import React from 'react';
 import CloudinaryImg from '../../../components/CloudinaryImg';
 import { useDispatch, useSelector } from 'react-redux';
 import { updateAccountData } from '../../../store/slices/account/accountThunks';
+import { generateTransaction } from '../../../utils/transactionHelper';
 
 const ActionMenu = ({ onTransferClicked }) => {
   const dispatch = useDispatch();
-  const balance = useSelector(state => state.account.balance);
+  const { balance, transactions } = useSelector(state => state.account);
 
   const IncrustedCircle = ({
     publicId,
@@ -33,12 +34,20 @@ const ActionMenu = ({ onTransferClicked }) => {
 
   const addMoneyClicked = () => {
     const newBalance = 1000 + balance;
-    dispatch(updateAccountData({ balance: newBalance }));
+    const generatedTransaction = generateTransaction('Add money', 1000);
+    const newTransactions = [generatedTransaction, ...transactions];
+    dispatch(
+      updateAccountData({ balance: newBalance, transactions: newTransactions })
+    );
   };
 
   const QRCodeClicked = () => {
     const newBalance = balance - 1000;
-    dispatch(updateAccountData({ balance: newBalance }));
+    const generatedTransaction = generateTransaction('QR code', -1000);
+    const newTransactions = [generatedTransaction, ...transactions];
+    dispatch(
+      updateAccountData({ balance: newBalance, transactions: newTransactions })
+    );
   };
 
   return (
@@ -57,7 +66,8 @@ const ActionMenu = ({ onTransferClicked }) => {
           imgCls={'qr'}></IncrustedCircle>
         <IncrustedCircle
           publicId={'makaia-transfers-react/home/transfer'}
-          alt={'swap'} onClick={onTransferClicked}
+          alt={'swap'}
+          onClick={onTransferClicked}
           imgCls={'transfer'}
           text={'Transfer'}></IncrustedCircle>
         <IncrustedCircle

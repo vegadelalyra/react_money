@@ -1,4 +1,4 @@
-import { v4 as uuidv4 } from "uuid";
+import { v4 as uuidv4 } from 'uuid';
 
 const incomeSections = [
   'Project bonus',
@@ -29,10 +29,12 @@ const deficitSections = [
   // Add more as needed
 ];
 
-const getRandomSection = array =>
-  array[Math.floor(Math.random() * array.length)];
+export const getRandomSection = amount => {
+  const array = amount > 0 ? incomeSections : deficitSections;
+  return array[Math.floor(Math.random() * array.length)];
+};
 
-  /*
+/*
     Transaction structure:
           {
         id: 123,
@@ -43,23 +45,21 @@ const getRandomSection = array =>
       },
   */
 const generateTransaction = (transferName, transferCharge) => {
-  const isIncome = transferCharge > 0 
+  const isIncome = transferCharge > 0;
   const sectionCategory = isIncome ? incomeSections : deficitSections;
 
   const generateFormattedDate = () => {
-    const now = new Date();
-    const formattedDate = `${now.getDate()}/${now.getMonth() + 1}/${
-      now.getFullYear() % 100
-    }`;
+    const currentTime = new Date();
+    const formattedDate = `${currentTime.getHours()}:${currentTime.getMinutes()} ${currentTime.toLocaleDateString()}`;
     return formattedDate;
   };
 
   const transaction = {
     id: uuidv4(),
-    name: transferName,
+    contactToTransfer: { name: transferName },
     section: getRandomSection(sectionCategory),
-    date: generateFormattedDate(), // Replace with actual random date generation logic
-    charge: transferCharge, // Generating a random change between -50 and 50
+    time: generateFormattedDate(), // Replace with actual random date generation logic
+    amount: transferCharge, // Generating a random change between -50 and 50
   };
 
   return transaction;

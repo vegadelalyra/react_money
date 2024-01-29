@@ -1,7 +1,19 @@
-import React from 'react';
+import React, { useState } from 'react';
 import CloudinaryImg from '../../../components/CloudinaryImg';
 
-const FavContact = ({ contact }) => {
+const FavContact = ({ contact, toggleFavorite }) => {
+  const [isFav, setIsFav] = useState(contact.isFavorite)
+
+  const onContactClicked = contact => {
+    // console.log(contact);
+  };
+
+  const isFavoriteClicked = event => {
+    event.stopPropagation();
+    setIsFav(!isFav)
+    return toggleFavorite(!isFav)
+  };
+
   return (
     <aside
       className='fav_contact'
@@ -16,17 +28,19 @@ const FavContact = ({ contact }) => {
           <span className={'contact_email'}>{contact.email}</span>
         </article>
       </div>
-      {contact.isFavorite ? (
-        <CloudinaryImg
-          containerClss={'contact_fav'}
-          publicId={'makaia-transfers-react/transaction/isFav'}
-        />
-      ) : (
-        <CloudinaryImg
-          containerClss={'contact_fav'}
-          publicId={'makaia-transfers-react/transaction/fav'}
-        />
-      )}
+      <div onClick={isFavoriteClicked}>
+        {isFav ? (
+          <CloudinaryImg
+            containerClss={'contact_fav'}
+            publicId={'makaia-transfers-react/transaction/isFav'}
+          />
+        ) : (
+          <CloudinaryImg
+            containerClss={'contact_fav'}
+            publicId={'makaia-transfers-react/transaction/fav'}
+          />
+        )}
+      </div>
     </aside>
   );
 };

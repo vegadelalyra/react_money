@@ -1,13 +1,17 @@
 import React from 'react';
 import CloudinaryImg from '../../../components/CloudinaryImg';
+import { getRandomSection } from '../../../utils/transactionHelper';
 
-const TransactionBody = ({ onFormSubmitted, balance, name }) => {
+const TransactionBody = ({ onFormSubmitted, balance, contactToTransfer }) => {
   const handleSubmit = event => {
     event.preventDefault();
-
+    
     // Convert amount input value to a number without symbols or dots
     const amountInput = event.target.elements.amount;
     const amountValue = parseFloat(amountInput.value.replace(/[^\d.]/g, ''));
+
+    // Define a random section for the balance movement
+    const section = getRandomSection(amountValue)
 
     // Get the note value directly from the textarea
     const noteValue = event.target.elements.note.value;
@@ -25,7 +29,7 @@ const TransactionBody = ({ onFormSubmitted, balance, name }) => {
       id: transactionId,
       note: noteValue,
       section,
-      name
+      contactToTransfer
     });
   };
 

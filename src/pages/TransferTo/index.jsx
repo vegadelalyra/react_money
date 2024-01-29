@@ -6,7 +6,7 @@ import {
   SET_CONTACT_TO_TRANSFER,
   SET_TRANSACTION_AMOUNT_SELECTED,
 } from '../../store/slices/app/appSlice';
-import Payee from './components/payee';
+import Payee from './components/Payee';
 import TransactionBody from './components/TransactionBody';
 import { useNavigate } from 'react-router-dom';
 import { updateAccountData } from '../../store/slices/account/accountThunks';
@@ -18,8 +18,6 @@ const TransferTo = () => {
   const selectedContact = useSelector(state => state.app.contactToTransfer);
   const { balance, transactions } = useSelector(state => state.account);
   const { contactToTransfer } = useSelector(state => state.app);
-
-  const name = contactToTransfer.name;
 
   const returnToContacts = () => {
     return dispatch(SET_CONTACT_TO_TRANSFER(false));
@@ -47,7 +45,7 @@ const TransferTo = () => {
       <TransactionBody
         onFormSubmitted={onFormSubmitted}
         balance={balance}
-        name={name}
+        contactToTransfer={contactToTransfer}
       />
     </div>
   );

@@ -9,6 +9,7 @@ import {
   SET_CONTACT_TO_TRANSFER,
   SET_TRANSACTION_AMOUNT_SELECTED,
 } from '../../store/slices/app/appSlice';
+import { updateAccountData } from '../../store/slices/account/accountThunks';
 
 const Success = () => {
   const navigate = useNavigate();
@@ -16,6 +17,7 @@ const Success = () => {
 
   const contact = useSelector(state => state.app.contactToTransfer);
   const transaction = useSelector(state => state.app.transactionAmountSelected);
+  const { contacts } = useSelector(state => state.account);
 
   const onBackClicked = () => {
     dispatch(SET_CONTACT_TO_TRANSFER(false));
@@ -29,11 +31,21 @@ const Success = () => {
     return navigate('/');
   };
 
+  const toggleFavorite = isFav => {
+    const newContacts = [...contacts];
+    const index = newContacts.findIndex(saved => saved.email === contact.email);
+    newContacts[index] = { ...contact, isFavorite : isFav };
+    return dispatch(updateAccountData({ contacts: newContacts }));
+  };
+
   return (
     <main className='success__page'>
       <Header onBackClicked={onBackClicked} />
       <span className='transferto'>Transfer to</span>
-      <FavContact contact={contact} />
+      <FavContact
+        contact={contact}
+        toggleFavorite={toggleFavorite}
+      />
       <Summary
         transaction={transaction}
         onBackToHomeClicked={onBackToHomeClicked}

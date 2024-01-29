@@ -1,7 +1,7 @@
 import React from 'react';
 import CloudinaryImg from '../../../components/CloudinaryImg';
 
-const History = ({ transactions }) => {
+const History = ({ transactions, onHistoryTransactionClicked }) => {
   const transfer = 'makaia-transfers-react/home/';
   const positiveTransfer = transfer + '%2Btransfer';
   const negativeTransfer = transfer + '-transfer';
@@ -20,7 +20,6 @@ const History = ({ transactions }) => {
     const symbol = transaction.amount > 0 ? '+' : '';
     return symbol + Formater.format(transaction.amount);
   };
-
   return (
     <section className='history__container'>
       <article className='history'>
@@ -32,18 +31,18 @@ const History = ({ transactions }) => {
         </div>
         <ul>
           {transactions.map(transaction => (
-            <li key={transaction.id}>
+            <li key={transaction.id} onClick={() => onHistoryTransactionClicked(transaction)}>
               {/* Replace with actual transaction data and styling */}
-              <div className="iconAndInfo">
+              <div className='iconAndInfo'>
                 <span>
                   {' '}
                   <CloudinaryImg publicId={transactionIcon(transaction)} />{' '}
                 </span>
                 <div className='info'>
-                  <span className='name'>{transaction.name}</span>
+                  <span className='name'>{transaction.contactToTransfer.name}</span>
                   <div className='details'>
                     <span>{transaction.section} • </span>
-                    <span>{transaction.time}</span>
+                    <span>{transaction.time.split(' ')[1]}</span>
                   </div>
                 </div>
               </div>

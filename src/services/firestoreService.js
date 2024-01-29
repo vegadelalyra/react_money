@@ -108,7 +108,7 @@ export const updateAccountInSubCollection = async (identifier, accountData) => {
 
     return true;
   } catch (error) {
-    console.error('cause: firestoreService. error:', error);
+    console.error('cause: firestoreService: UPDATEACCOUNTINSUBCOLLECTION. error:', error);
     return false;
   }
 };
