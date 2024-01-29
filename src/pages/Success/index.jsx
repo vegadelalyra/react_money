@@ -5,7 +5,10 @@ import FavContact from './components/favContact';
 import Summary from './components/Summary';
 import { useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
-import { SET_CONTACT_TO_TRANSFER } from '../../store/slices/app/appSlice';
+import {
+  SET_CONTACT_TO_TRANSFER,
+  SET_TRANSACTION_AMOUNT_SELECTED,
+} from '../../store/slices/app/appSlice';
 
 const Success = () => {
   const navigate = useNavigate();
@@ -16,11 +19,13 @@ const Success = () => {
 
   const onBackClicked = () => {
     dispatch(SET_CONTACT_TO_TRANSFER(false));
+    dispatch(SET_TRANSACTION_AMOUNT_SELECTED(false));
     return navigate('/transaction');
   };
 
   const onBackToHomeClicked = () => {
     dispatch(SET_CONTACT_TO_TRANSFER(false));
+    dispatch(SET_TRANSACTION_AMOUNT_SELECTED(false));
     return navigate('/');
   };
 
@@ -29,7 +34,10 @@ const Success = () => {
       <Header onBackClicked={onBackClicked} />
       <span className='transferto'>Transfer to</span>
       <FavContact contact={contact} />
-      <Summary transaction={transaction} onBackToHomeClicked={onBackToHomeClicked} />
+      <Summary
+        transaction={transaction}
+        onBackToHomeClicked={onBackToHomeClicked}
+      />
     </main>
   );
 };

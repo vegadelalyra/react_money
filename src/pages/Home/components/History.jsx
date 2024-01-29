@@ -7,7 +7,7 @@ const History = ({ transactions }) => {
   const negativeTransfer = transfer + '-transfer';
 
   const transactionIcon = transaction =>
-    transaction.charge > 0 ? positiveTransfer : negativeTransfer;
+    transaction.amount > 0 ? positiveTransfer : negativeTransfer;
 
   const Formater = new Intl.NumberFormat('en-US', {
     style: 'currency',
@@ -17,8 +17,8 @@ const History = ({ transactions }) => {
   });
 
   const transactioncharge = transaction => {
-    const symbol = transaction.charge > 0 ? '+' : '';
-    return symbol + Formater.format(transaction.charge);
+    const symbol = transaction.amount > 0 ? '+' : '';
+    return symbol + Formater.format(transaction.amount);
   };
 
   return (
@@ -43,13 +43,13 @@ const History = ({ transactions }) => {
                   <span className='name'>{transaction.name}</span>
                   <div className='details'>
                     <span>{transaction.section} • </span>
-                    <span>{transaction.date}</span>
+                    <span>{transaction.time}</span>
                   </div>
                 </div>
               </div>
               <span
                 className={`charge ${
-                  transaction.charge > 0 ? 'positivecharge' : 'negativecharge'
+                  transaction.amount > 0 ? 'positivecharge' : 'negativecharge'
                 }`}>
                 {transactioncharge(transaction)}
               </span>

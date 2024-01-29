@@ -1,7 +1,7 @@
 import React from 'react';
 import CloudinaryImg from '../../../components/CloudinaryImg';
 
-const TransactionBody = ({ onFormSubmitted, balance }) => {
+const TransactionBody = ({ onFormSubmitted, balance, name }) => {
   const handleSubmit = event => {
     event.preventDefault();
 
@@ -24,6 +24,8 @@ const TransactionBody = ({ onFormSubmitted, balance }) => {
       time: formattedTime,
       id: transactionId,
       note: noteValue,
+      section,
+      name
     });
   };
 

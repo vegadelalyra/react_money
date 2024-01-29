@@ -2,24 +2,37 @@ import './styles.sass';
 import React from 'react';
 import Title from '../../components/Title';
 import { useDispatch, useSelector } from 'react-redux';
-import { SET_CONTACT_TO_TRANSFER, SET_TRANSACTION_AMOUNT_SELECTED } from '../../store/slices/app/appSlice';
+import {
+  SET_CONTACT_TO_TRANSFER,
+  SET_TRANSACTION_AMOUNT_SELECTED,
+} from '../../store/slices/app/appSlice';
 import Payee from './components/payee';
 import TransactionBody from './components/TransactionBody';
 import { useNavigate } from 'react-router-dom';
+import { updateAccountData } from '../../store/slices/account/accountThunks';
 
 const TransferTo = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
   const selectedContact = useSelector(state => state.app.contactToTransfer);
-  const balance = useSelector(state => state.account.balance);
+  const { balance, transactions } = useSelector(state => state.account);
+  const { contactToTransfer } = useSelector(state => state.app);
+
+  const name = contactToTransfer.name;
 
   const returnToContacts = () => {
     return dispatch(SET_CONTACT_TO_TRANSFER(false));
   };
 
   const onFormSubmitted = transaction => {
-    dispatch(SET_TRANSACTION_AMOUNT_SELECTED(transaction))
+    dispatch(SET_TRANSACTION_AMOUNT_SELECTED(transaction));
+    dispatch(
+      updateAccountData({
+        transactions: [transaction, ...transactions],
+        balance: transaction.amount + balance,
+      })
+    );
     return navigate('/history');
   };
 
@@ -34,6 +47,7 @@ const TransferTo = () => {
       <TransactionBody
         onFormSubmitted={onFormSubmitted}
         balance={balance}
+        name={name}
       />
     </div>
   );

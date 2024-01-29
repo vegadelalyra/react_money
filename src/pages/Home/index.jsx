@@ -1,4 +1,4 @@
-import { useDispatch, useSelector } from 'react-redux';
+import { useSelector } from 'react-redux';
 import {
   Balance,
   NotificationProfile,
@@ -8,36 +8,17 @@ import {
   Navbar,
 } from './components';
 import './styles.sass';
-import { generateTransaction } from '../../utils/transactionHelper';
-import { updateAccountData } from '../../store/slices/account/accountThunks';
 import { useNavigate } from 'react-router-dom';
 
 const Home = () => {
-  const dispatch = useDispatch();
   const navigate = useNavigate();
 
-  const balance = useSelector(state => state.account.balance);
-  const transactions = useSelector(state => state.account.transactions);
-  const userEmail = useSelector(state => state.user.user.email);
+  const { balance, transactions } = useSelector(state => state.account);
 
   const onTransferClicked = () => {
     if (!balance) return;
 
-    return navigate('/transaction')
-
-    // TEST TRANSACTION
-    // const transactionCharge = 200;
-    // const transaction = generateTransaction(
-    //   'Pepita Pérez',
-    //   transactionCharge,
-    //   userEmail
-    // );
-    // dispatch(
-    //   updateAccountData({
-    //     transactions: [transaction, ...transactions],
-    //     balance: transactionCharge + balance,
-    //   })
-    // );
+    return navigate('/transaction');
   };
 
   return (
