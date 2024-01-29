@@ -1,7 +1,7 @@
 import './styles.sass';
 import React from 'react';
 import Header from './components/Header';
-import FavContact from './components/favContact';
+import FavContact from './components/FavContact';
 import Summary from './components/Summary';
 import { useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
