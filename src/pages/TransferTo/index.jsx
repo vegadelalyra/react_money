@@ -4,16 +4,25 @@ import Title from '../../components/Title';
 import { useDispatch, useSelector } from 'react-redux';
 import { SET_CONTACT_TO_TRANSFER } from '../../store/slices/app/appSlice';
 import Payee from './components/payee';
-import TransactionBody from './components/TransactionBody'
+import TransactionBody from './components/TransactionBody';
+import { useNavigate } from 'react-router-dom';
 
 const TransferTo = () => {
-  const selectedContact = useSelector(state => state.app.contactToTransfer)
-  const dispatch = useDispatch()
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
 
+  const selectedContact = useSelector(state => state.app.contactToTransfer);
+  const balance = useSelector(state => state.account.balance);
 
   const returnToContacts = () => {
-    dispatch(SET_CONTACT_TO_TRANSFER(false))
-  }
+    return dispatch(SET_CONTACT_TO_TRANSFER(false));
+  };
+
+  const onFormSubmitted = event => {
+    event.preventDefault();
+
+    return navigate('/history');
+  };
 
   return (
     <div className='transfer_to__page'>
@@ -23,7 +32,10 @@ const TransferTo = () => {
         title={'Transfer to'}
       />
       <Payee contact={selectedContact} />
-      <TransactionBody />
+      <TransactionBody
+        onFormSubmitted={onFormSubmitted}
+        balance={balance}
+      />
     </div>
   );
 };

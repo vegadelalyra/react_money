@@ -1,0 +1,107 @@
+.transaction_body__container
+  position: relative
+  display: flex
+  flex-flow: column
+  align-items: flex-start
+  width: 100%
+  padding: 24px
+
+  label
+    color: #171A1F
+    font-family: Arimo
+    font-size: 14px
+    font-style: normal
+    font-weight: 700
+    line-height: 22px
+
+  input, textarea, #balance
+    width: 100%
+    border-radius: 8px
+    background-color: white
+    box-shadow: none
+    border: 1px solid #9095A0
+    margin-bottom: 24px
+
+  #amount
+    display: inline-flex
+    padding: 16px 140px 16px 24px
+    justify-content: center
+    align-items: center
+    height: 100px
+    gap: 54px
+    color: #171A1F
+    font-family: Arimo
+    font-size: 48px
+    font-style: normal
+    font-weight: 400
+    line-height: 68px
+
+  #balance
+    padding: 14px
+    height: 70px
+    display: flex
+    justify-content: space-between
+    align-items: center
+
+    .walletDetails
+      display: flex
+      align-items: center
+      gap: 16px
+
+    .details
+      display: flex
+      flex-flow: column
+      align-items: flex-start
+      justify-content: stretch
+
+      .titleSpan
+        color: #171A1F
+        font-family: Arimo
+        font-size: 18px
+        font-style: normal
+        font-weight: 400
+        line-height: 28px
+
+      .balanceSpan
+        color: #9095A0
+        font-family: "DM Sans"
+        font-size: 12px
+        font-style: normal
+        font-weight: 400
+        line-height: 20px
+
+  #note
+    padding: 12px
+    resize: none
+    height: 58px
+
+    &Label
+      color: #424955
+      font-family: "DM Sans"
+      font-size: 14px
+      font-style: normal
+      font-weight: 700
+      line-height: 22px
+
+  button
+    display: flex
+    width: 342px
+    padding: 9px 0px
+    justify-content: center
+    align-items: center
+    border-radius: 22px
+    background: #1e64dd
+    position: relative
+    top: 50px
+    border: none
+    cursor: pointer
+    &:hover
+      background-color: black
+
+    span
+      color: #FFF
+      font-family: "DM Sans"
+      font-size: 16px
+      font-style: normal
+      font-weight: 400
+      line-height: 26px

@@ -18,7 +18,9 @@ const NewPayeePage = () => {
     setIsFavorite(!isFavorite);
   };
 
-  const handleAddPayee = () => {
+  const handleAddPayee = event => {
+    event.preventDefault()
+    
     // Implement logic to add payee to user account
     console.log('Adding new payee:', {
       profileImage,
@@ -37,34 +39,6 @@ const NewPayeePage = () => {
       />
 
       <div className='newpayee__container'>
-        <div className='profile-image-input'>
-          {/* Rounded circle-shaped input for profile image */}
-          {/* You need to implement the logic for handling profile image */}
-          <CloudinaryImg
-            containerClss={'profileImageIcon'}
-            publicId={'makaia-transfers-react/transaction/test'}
-          />
-        </div>
-        <input
-          type='text'
-          placeholder='Email'
-          value={email}
-          onChange={e => setEmail(e.target.value)}
-        />
-        <input
-          type='text'
-          placeholder='Name'
-          value={name}
-          onChange={e => setName(e.target.value)}
-        />
-        <div className='same-country-toggle'>
-          <label>Same Country?</label>
-          <div
-            className='toggle-btn'
-            onClick={handleSameCountryToggle}>
-            {sameCountry ? 'Yes' : 'No'}
-          </div>
-        </div>
         <div
           className='favorite-star'
           onClick={handleFavoriteToggle}>
@@ -74,11 +48,68 @@ const NewPayeePage = () => {
             publicId={'makaia-transfers-react/transaction/fav'}
           />
         </div>
-        <button
-          className='add-payee-btn'
-          onClick={handleAddPayee}>
-          Add New Payee
-        </button>
+        <div className='profile-image-input'>
+          <CloudinaryImg
+            imgClss={'profileImageIcon'}
+            publicId={'makaia-transfers-react/transaction/test'}
+          />
+        </div>
+        <form>
+          <label htmlFor='email'>Email</label>
+          <input
+            type='text'
+            id='email'
+            name='email'
+            placeholder='myexample@email.co'
+            value={email}
+            onChange={e => setEmail(e.target.value)}
+          />
+          <label htmlFor='name'>Name</label>
+          <input
+            type='text'
+            id='name'
+            name='name'
+            placeholder='Pepito Perez'
+            value={name}
+            onChange={e => setName(e.target.value)}
+          />
+          <div className='same-country-toggle'>
+            <p>Same Country?</p>
+            <div className='toggle-options'>
+              <input
+                className='radio_input'
+                id='yes'
+                name='sameCountry'
+                type='radio'
+                onChange={() => handleSameCountryToggle('yes')}
+              />
+              <label
+                htmlFor='yes'
+                className='radio_label'>
+                Yes
+              </label>
+              <input
+                className='radio_input'
+                type='radio'
+                id='no'
+                name='sameCountry'
+                value='no'
+                onChange={() => handleSameCountryToggle('no')}
+              />
+              <label
+                htmlFor='no'
+                className='radio_label'>
+                No{' '}
+              </label>
+            </div>
+          </div>
+
+          <button
+            className='add-payee-btn'
+            onClick={handleAddPayee}>
+            <span>Add New Payee</span>
+          </button>
+        </form>
       </div>
     </div>
   );
