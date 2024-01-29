@@ -1,8 +1,17 @@
 import React from 'react'
+import { useNavigate } from 'react-router-dom'
 
 const TransactionBody = () => {
+  const navigate = useNavigate()
+
+  const onFormSubmitted = event => {
+    event.preventDefault()
+
+    return navigate('/history')
+  }
+  
   return (
-    <form className='transacion_body__container'>
+    <form className='transacion_body__container' onSubmit={onFormSubmitted}>
       <label htmlFor="">
         Enter amount
         <input type="text" />

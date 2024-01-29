@@ -5,6 +5,7 @@ import Home from '../pages/Home';
 import Transaction from '../pages/Transaction';
 import NewPayeePage from '../pages/NewPayee';
 import TransferTo from '../pages/TransferTo';
+import Success from '../pages/Success';
 
 const AppRoutes = () => {
   const isAuthenticated = useSelector(state => state.user.isAuthenticated);
@@ -35,6 +36,20 @@ const AppRoutes = () => {
       <Route
         path='/newpayee'
         element={isAuthenticated ? <NewPayeePage /> : <LoginPage />}
+      />
+      <Route
+        path='/history'
+        element={
+          isAuthenticated ? (
+            isContactToTransferChosen ? (
+              <Success />
+            ) : (
+              <Transaction />
+            )
+          ) : (
+            <LoginPage />
+          )
+        }
       />
     </Routes>
   );
