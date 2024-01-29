@@ -54,8 +54,8 @@ const NewPayeePage = () => {
   };
   // [ENDING] -- CODE FOR IMG INPUT
 
-  const handleSameCountryToggle = () => {
-    setSameCountry(!sameCountry);
+  const handleSameCountryToggle = value => {
+    setSameCountry(value);
   };
 
   const handleFavoriteToggle = () => {
@@ -206,8 +206,9 @@ const NewPayeePage = () => {
                 id='yes'
                 name='sameCountry'
                 type='radio'
+                value={true}
                 required
-                onChange={() => handleSameCountryToggle('yes')}
+                onChange={() => handleSameCountryToggle(true)}
               />
               <label
                 htmlFor='yes'
@@ -219,8 +220,8 @@ const NewPayeePage = () => {
                 type='radio'
                 id='no'
                 name='sameCountry'
-                value='no'
-                onChange={() => handleSameCountryToggle('no')}
+                value={false}
+                onChange={() => handleSameCountryToggle(false)}
               />
               <label
                 htmlFor='no'

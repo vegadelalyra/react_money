@@ -5,7 +5,7 @@ const Payee = ({ contact }) => {
     <main className='payee__container'>
       <figure>
         <img
-          src={contact.photoURL}
+          src={contact.photoUrl}
           alt='Profile picture!'
         />
         <figcaption>{contact.name}</figcaption>

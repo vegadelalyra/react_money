@@ -28,8 +28,8 @@ const TransactionPage = () => {
     })
     .sort((a, b) => {
       // Sort by favorite status: true comes first
-      if (a.favorite && !b.favorite) return -1;
-      if (!a.favorite && b.favorite) return 1;
+      if (a.isFavorite && !b.isFavorite) return -1;
+      if (!a.isFavorite && b.isFavorite) return 1;
 
       // If favorite status is the same, sort alphabetically by name
       return a.name.localeCompare(b.name);
@@ -37,9 +37,7 @@ const TransactionPage = () => {
 
   return (
     <div className='transaction__page'>
-      <Title
-        title={'Transfer to'}
-      />
+      <Title title={'Transfer to'} />
       <SearchBar
         searchTerm={searchTerm}
         setSearchTerm={setSearchTerm}

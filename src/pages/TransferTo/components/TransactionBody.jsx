@@ -11,7 +11,7 @@ const TransactionBody = ({ onFormSubmitted, balance }) => {
         type='text'
         id='amount'
         name='amount'
-        value={'150.00'}
+        defaultValue={'150.00'}
       />
       <label htmlFor='balance'>Transfer</label>
       <div
@@ -30,15 +30,20 @@ const TransactionBody = ({ onFormSubmitted, balance }) => {
           publicId={'makaia-transfers-react/transaction/transfer_methods'}
         />
       </div>
-      <label htmlFor='note' id='noteLabel'>Note (optional)</label>
+      <label
+        htmlFor='note'
+        id='noteLabel'>
+        Note (optional)
+      </label>
       <textarea
         name='note'
         id='note'
         cols='30'
-        rows='10'>
-        Thanks for helping me with the project! Couldn't finish so quickly
-        without you 🙏
-      </textarea>
+        rows='10'
+        defaultValue={
+          " Thanks for helping me with the project! Couldn't finish so quickly without you 🙏"
+        }
+      />
       <button type='submit'>
         <span>Continue</span>
       </button>
